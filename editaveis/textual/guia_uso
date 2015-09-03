@@ -1,0 +1,40 @@
+\chapter[Guia de Uso]{Guia de Uso}
+
+\section{Passo a passo para o primeiro contato com a ferramenta}
+
+\section{Passo a passo para o uso das principais funcionalidades da ferramenta}
+
+\section{Verificação das funcionalidades descritas a seguir em forma de pergunta:}
+
+\begin{itemize}
+  \item A ferramenta provê mecanismo de backup dos itens controlados pela ferramenta?
+  \item A ferramenta provê algum mecanismo de controle de acesso?
+  \item A ferramenta controla arquivos de diversos formatos, seja código, executáveis, documentação e
+  diagramas?
+  \item A ferramenta registra versões dos itens de configuração?
+  \item É possível visualizar as diferenças entre as versões incluindo a razão para estas diferenças?
+  \item É possível identificar dependências entre artefados, são elas: artefatos que pertencem a um
+  mesmo item de configuração; itens de configuração de um componente; versão de itens de
+  configuração de uma baseline; artefatos que são utilizados para construir um outro artefato
+  (por exemplo, um código é usado para construir a funcionalidade de um outro código)?
+  \item É possível selecionar itens de configuração compatível com a versão válida e consistente do
+  produto?
+  \item É possível fazer snapshots ou congelar o estado de um produto a qualquer momento?
+  \item A ferramenta provê mecanismos que facilitem a análise do impacto de se fazer uma mudança?
+  \item É possível recuperar o histórico de todas as mudanças realizadas no itens controlados pela
+  ferramenta?
+  \item É possível recuperar o log de todos os detalhes do trabalho realizado?
+  \item A ferramenta provê mecanismos para registrar estatísticas?
+  \item A ferramenta provê mecanismos para examinar estado dos itens?
+  \item A ferramenta provê mecanismos para selecionar aspectos para os quais deseja-se gerar relatório
+  de acompanhamento de estado de configuração e gerar tal relatório?
+  \item A ferramenta adverte sobre acesso inadequado a qualquer item para evitar mudanças não justificadas
+  ou conflitos de mudanças?
+  \item A ferramenta provê meios para monitorar bugs (quem, como e quando o bug foi gerado)?
+  \item A ferramenta provê meios que facilitem a propagação de mudanças de maneira controlada
+  através de diferentes versões de itens?
+  \item A ferramenta provê mecanismos para facilitar a comunicação entre os interessados nos itens de
+  configuração controlados?
+  \item A ferramenta provê mecanismos para resolução de conflitos quando for necessário fazer merge
+  de mudanças?
+\end{itemize}
