@@ -2,32 +2,178 @@
 
 \section{Passo a passo para o primeiro contato com a ferramenta}
 
+\subsection{Criando um repositório}
+
 Agora que o SVN já está instalado, para criação de um repositório deve ser dado o seguinte comando:
-"svnadmin create <camminho do repositorio>"
 
 
-Os repositórios são identificados através de URLs.
+\colorbox{PineGreen}{
+\begin{minipage}{200px}
+\flushleft{ 
+  \textbf{svnadmin create <camminho do repositorio>}
+}
+\end{minipage}
+}
 
-A ferramenta trabalha com Cópias de trabalho. Uma cópia de trabalho consiste
-na mesma estrutura do repositório, porém é utilizado para uso privado. Ou seja, é
-a cópia local do repositório que pode ser editada pelo usuário.
+\subsection{O repositório}
 
-Para que os outros membros do projeto tenham acesso ao que foi produzido na cópia
-de trabalho, o SVN permite que o usuário escreva no repositório as alterações feitas
-e para ter acesso às atualizações feitas por outros membros, é permitido ao usuário ler o 
-repositório.
+De acordo com \cite{svn-book}, quando você cria um repositório no SVN ele contém a seguinte estrutura de pastas:
 
-A pasta .svn é criada em cada cópia de trabalho, pois é ela que permite ao SVN reconhecer que há mudanças realizadas nos arquivos que precisam ser submetidas ao repositório.
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=1]{figuras/repositorio.png}
+\caption{Estrutura do repositório. Baseado em \cite{svn-book}}
+\end{figure}
 
-Para escrever as alterações no repositório é realizado um:
-"svn commit <nome do arquivo modificado> -m <"mensagem\">"
 
-Para ler as alterações é realizado um:
-"svn update"
+\begin{itemize}
 
-Para mudanças no repositório e na cópia de trabalho os comandos devem ser realizados na seguinte ordem:
-* svn update
-* svn commit
+\item conf: Pasta que contém arquivos de configuração do repositório.
+
+\item dav: Pasta que contém arquivos utilizados pelo mod\_dav\_svn.
+
+\item db: Pasta que armazena os dados versionados.
+
+\item format: Arquivo que indica o número da versão do repositório.
+
+\item hooks: Pasta que contém modelos de scripts
+
+\item locks: Pasta para arquivos bloqueados, é utilizado no rastreamento dos acessos ao repositório.
+
+\end{itemize}
+
+\subsection{Disponibilizando um repositório}
+
+Um repositório pode ser mantido apenas localmente e seu acesso torna-se restrito à máquina a qual ele foi criado. Mas isso não é muito vantajoso, dessa forma um repositório deve ser disponbilizado em um servidor para que as pessoas possam acessá-lo de qualquer lugar. Dessa forma, \cite{svn-book} recomenda os servidores da \label{tab:servidores}.
+ 
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[]
+\centering
+\caption{Comparação entre os servidores}
+\label{tab:servidores}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\rowcolor[HTML]{01796F} 
+{\color[HTML]{000000} \textbf{Característica}} & {\color[HTML]{000000} \textbf{Apache + mod\_dav\_svn}}                                                                                                                   & {\color[HTML]{000000} \textbf{svnserve}}                                                                                                     & {\color[HTML]{000000} \textbf{svnserve sobre SSH}}                             \\ \hline
+Opções de autenticação                         & \begin{tabular}[c]{@{}l@{}}Autenticação básica HTTP(S), certificados \\ X.509, LDAP, NTLM, ou quaisquer \\ outros mecanismos disponíveis \\ ao Apache httpd\end{tabular} & CRAM-MD5                                                                                                                                     & SSH                                                                            \\ \hline
+Opções para contas de usuários                 & arquivo 'users' privativo                                                                                                                                                & arquivo 'users' privativo                                                                                                                    & contas no sistema                                                              \\ \hline
+Opções de autorização                          & \begin{tabular}[c]{@{}l@{}}acesso leitura/escrita pode ser dado\\ para o repositório como um \\ todo, ou especificado por caminho\end{tabular}                           & \begin{tabular}[c]{@{}l@{}}acesso leitura/escrita pode ser dado \\ para o repositório como um todo, ou especificado por caminho\end{tabular} & acesso leitura/escrita passível de ser dado apenas ao repositório como um todo \\ \hline
+Criptografia                                   & através de SSL opcional                                                                                                                                                  & nenhuma                                                                                                                                      & túnel SSH                                                                      \\ \hline
+Registro de log                                & \begin{tabular}[c]{@{}l@{}}logs completos do Apache para cada \\ requisição HTTP, com opcional log “alto nível” para operações do cliente em geral\end{tabular}          & sem log                                                                                                                                      & sem log                                                                        \\ \hline
+Interoperabilidade                             & \begin{tabular}[c]{@{}l@{}}parcialmente usável por outros \\ clientes WebDAV\end{tabular}                                                                                & se comunica apenas com clientes svn                                                                                                          & se comunica apenas com clientes svn                                            \\ \hline
+Visualização pela web                          & \begin{tabular}[c]{@{}l@{}}suporte existente limitado, ou também \\ por meio de ferramentas de terceiros \\ como o ViewVC\end{tabular}                                   & apenas por meio de ferramentas de terceiros como o ViewVC                                                                                    & apenas por meio de ferramentas de terceiros como o ViewVC                      \\ \hline
+Velocidade                                     & um pouco mais lento                                                                                                                                                      & um pouco mais rápido                                                                                                                         & um pouco mais rápido                                                           \\ \hline
+Configuração inicial                           & um tanto complexa                                                                                                                                                        & extremamente simples                                                                                                                         & moderadamente simples                                                          \\ \hline
+\end{tabular}
+\end{table}
+\subsection{Acessando um repositório}
+
+  Os repositórios criados para controle de versão com o SVN são acessados através de URLs, seguindo os seguintes padrões \cite{svn-book}:
+
+\begin{centering}
+
+\textbf{Para o servidor:} É especificado o nome do servidor e a porta.
+
+\colorbox{PineGreen}{
+\begin{minipage}{220px}
+  \textbf{http://svn.example.com:9834/repos}
+\end{minipage}
+}
+
+\textbf{Para repositórios locais:} a URL ganha o prefixo \textit{file:}. Podem ser escritos com o nome do servidor, ou sem.
+\end{centering}
+
+\begin{multicols}{2} 
+
+
+\flushright{O nome do servidor como \textit{localhost}:
+
+\colorbox{PineGreen}{
+\begin{minipage}{210px}
+  \textbf{file://localhost/caminho/repositorio}
+\end{minipage}
+}
+}
+
+Ou sem especificação do servidor:
+
+\colorbox{PineGreen}{
+\begin{minipage}{200px}
+\flushleft{ 
+  \textbf{file:///caminho/repositorio}
+}
+\end{minipage}
+}
+
+\end{multicols}
+
+
+
+
+\subsection{Cópia de trabalho}
+  
+O SVN trabalha com cópias de trabalho. Uma cópia de trabalho consiste na mesma estrutura do repositório para uso privado. Ou seja, é a cópia local do repositório que pode ser editada pelo usuário. 
+
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=1]{figuras/repositorio_copia.png}
+\caption{Comunicação entre cópia de trabalho e repositório. Baseado em \cite{svn-book}}
+\end{figure}
+
+
+
+Para criar uma cópia de trabalho deve ser digitado o seguinte comando \cite{svn-book}:
+
+
+\begin{centering}
+\colorbox{PineGreen}{
+\begin{minipage}{320px}
+  \textbf{svn checkout http://svn.example.com:9834/repositorio}
+\end{minipage}
+}
+
+\end{centering}
+
+\subsection{Como funciona a relação entre o repositório e a cópia de trabalho?}
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=1]{figuras/repositorio_copia.png}
+\caption{Comunicação entre cópia de trabalho e repositório. Baseado em \cite{svn-book}}
+\end{figure}
+
+
+Para que os outros membros do projeto tenham acesso ao que foi produzido na cópia de trabalho, o SVN permite que o usuário escreva no repositório as alterações feitas
+e para ter acesso às atualizações feitas por outros membros, é permitido ao usuário ler o repositório \cite{svn-book}.
+
+\begin{multicols}{2} 
+
+
+\flushright{Para escrever}:{
+
+\colorbox{PineGreen}{
+\begin{minipage}{210px}
+  \textbf{svn commit <nome do arquivo modificado> -m <"mensagem\">}
+\end{minipage}
+}
+}
+
+Para ler:
+
+\colorbox{PineGreen}{
+\begin{minipage}{200px}
+\flushleft{ 
+  \textbf{svn update}
+}
+\end{minipage}
+}
+
+\end{multicols}
+
+\section{Passo a passo para o uso das principais funcionalidades da ferramenta}
 
 Para ver os arquivos modificados o comando é: "svn status"
 
@@ -44,29 +190,6 @@ Para desfazer as alterações em um arquivo: "svn revert <arquivo>"
 Para criar uma branch, deve ser ser feita uma cópia da pasta trunk para a pasta de branchs com o seguinte comando:
 
 "svn copy <caminho da pasta original> \ <caminho da pasta de destino, essa pasta deve possuir o nome da branch> -m "mensagem\">"
-
-
-% A Subversion client commits (that is, communicates the changes made to) any number of files and directories as a single atomic
-% transaction. By atomic transaction, we mean simply this: either all of the changes are accepted into the repository, or none of them
-% is. Subversion tries to retain this atomicity in the face of program crashes, system crashes, network problems, and other users' actions.
-% Each time the repository accepts a commit, this creates a new state of the filesystem tree, called a revision. Each revision is assigned
-% a unique natural number, one greater than the number assigned to the previous revision. The initial revision of a freshly created
-% repository is numbered 0 and consists of nothing but an empty root directory.
-% Figure 1.6, “Tree changes over time” illustrates a nice way to visualize the repository. Imagine an array of revision numbers, starting
-% at 0, stretching from left to right. Each revision number has a filesystem tree hanging below it, and each tree is a “snapshot” of
-% the way the repository looked after a commit.
-% 
-% 
-% Subversion client programs use URLs to identify versioned files and directories in Subversion repositories. For the most part, these
-% URLs use the standard syntax, allowing for server names and port numbers to be specified as part of the URL.
-% 
-% A Subversion working copy is an ordinary directory tree on your local system, containing a collection of files. You can edit these
-% Fundamental Concepts
-% 9
-% files however you wish, and if they're source code files, you can compile your program from them in the usual way. Your working
-% copy is your own private work area: Subversion will never incorporate other people's changes, nor make your own changes available
-% to others, until you explicitly tell it to do so. You can even have multiple working copies of the same project.
-\section{Passo a passo para o uso das principais funcionalidades da ferramenta}
 
 \section{Verificação das funcionalidades descritas a seguir em forma de pergunta:}
 
