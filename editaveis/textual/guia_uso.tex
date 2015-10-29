@@ -1,0 +1,120 @@
+\chapter[Guia de Uso]{Guia de Uso}
+
+\section{Passo a passo para o primeiro contato com a ferramenta}
+
+Agora que o SVN já está instalado, para criação de um repositório deve ser dado o seguinte comando:
+"svnadmin create <camminho do repositorio>"
+
+
+Os repositórios são identificados através de URLs.
+
+A ferramenta trabalha com Cópias de trabalho. Uma cópia de trabalho consiste
+na mesma estrutura do repositório, porém é utilizado para uso privado. Ou seja, é
+a cópia local do repositório que pode ser editada pelo usuário.
+
+Para que os outros membros do projeto tenham acesso ao que foi produzido na cópia
+de trabalho, o SVN permite que o usuário escreva no repositório as alterações feitas
+e para ter acesso às atualizações feitas por outros membros, é permitido ao usuário ler o 
+repositório.
+
+A pasta .svn é criada em cada cópia de trabalho, pois é ela que permite ao SVN reconhecer que há mudanças realizadas nos arquivos que precisam ser submetidas ao repositório.
+
+Para escrever as alterações no repositório é realizado um:
+"svn commit <nome do arquivo modificado> -m <"mensagem\">"
+
+Para ler as alterações é realizado um:
+"svn update"
+
+Para mudanças no repositório e na cópia de trabalho os comandos devem ser realizados na seguinte ordem:
+* svn update
+* svn commit
+
+Para ver os arquivos modificados o comando é: "svn status"
+
+Para mostrar as diferenças m um arquivo "svn diff"
+
+Para criar uma cópia de trabalho o comando é "svn checkout"
+
+Para ver as revisões criadas o comando é: "svn status --verbose"
+
+Para mostrar o histórico de mudanças o comando é "svn log"
+
+Para desfazer as alterações em um arquivo: "svn revert <arquivo>"
+
+Para criar uma branch, deve ser ser feita uma cópia da pasta trunk para a pasta de branchs com o seguinte comando:
+
+"svn copy <caminho da pasta original> \ <caminho da pasta de destino, essa pasta deve possuir o nome da branch> -m "mensagem\">"
+
+
+% A Subversion client commits (that is, communicates the changes made to) any number of files and directories as a single atomic
+% transaction. By atomic transaction, we mean simply this: either all of the changes are accepted into the repository, or none of them
+% is. Subversion tries to retain this atomicity in the face of program crashes, system crashes, network problems, and other users' actions.
+% Each time the repository accepts a commit, this creates a new state of the filesystem tree, called a revision. Each revision is assigned
+% a unique natural number, one greater than the number assigned to the previous revision. The initial revision of a freshly created
+% repository is numbered 0 and consists of nothing but an empty root directory.
+% Figure 1.6, “Tree changes over time” illustrates a nice way to visualize the repository. Imagine an array of revision numbers, starting
+% at 0, stretching from left to right. Each revision number has a filesystem tree hanging below it, and each tree is a “snapshot” of
+% the way the repository looked after a commit.
+% 
+% 
+% Subversion client programs use URLs to identify versioned files and directories in Subversion repositories. For the most part, these
+% URLs use the standard syntax, allowing for server names and port numbers to be specified as part of the URL.
+% 
+% A Subversion working copy is an ordinary directory tree on your local system, containing a collection of files. You can edit these
+% Fundamental Concepts
+% 9
+% files however you wish, and if they're source code files, you can compile your program from them in the usual way. Your working
+% copy is your own private work area: Subversion will never incorporate other people's changes, nor make your own changes available
+% to others, until you explicitly tell it to do so. You can even have multiple working copies of the same project.
+\section{Passo a passo para o uso das principais funcionalidades da ferramenta}
+
+\section{Verificação das funcionalidades descritas a seguir em forma de pergunta:}
+
+\begin{itemize}
+  \item A ferramenta provê mecanismo de backup dos itens controlados pela ferramenta?
+
+    Sim. O SVN provê um comando que possibilita a realização de um backup do repositório, caso algo dê errado. O comando é:
+    "svnadmin hotcopy <caminho do repositorio> <caminho de backup>"
+
+  \item A ferramenta provê algum mecanismo de controle de acesso?
+    Sim. No arquivo "svnserve.conf" são descritos os níveis de acesso para usuários autenticados e não autenticados
+
+  \item A ferramenta controla arquivos de diversos formatos, seja código, executáveis, documentação e diagramas?
+    Sim. O SVN controla versão de todos os documentos colocados no repositório.
+
+  \item A ferramenta registra versões dos itens de configuração?
+    Sim. Cada alteração feita é registrada em um número de revisão. É possível visualizar um histórico de alterações com as seguintes informações:
+
+    \subitem Nome do autor da alteração
+    \subitem Data e hora
+    \subitem Mensagem que descreve a alteração
+
+  \item É possível visualizar as diferenças entre as versões incluindo a razão para estas 
+  diferenças?
+
+      O SVN permite a visualização das diferenças entre as versões, mas não apresenta a razão das diferenças.
+  
+  \item É possível identificar dependências entre artefatos, são elas: artefatos que pertencem a um mesmo item de configuração; itens de configuração de um componente; versão de itens de configuração de uma baseline; artefatos que são utilizados para construir um outro artefato  (por exemplo, um código é usado para construir a funcionalidade de um outro código)?
+  
+  
+  \item É possível selecionar itens de configuração compatível com a versão válida e consistente do
+  produto?
+  \item É possível fazer snapshots ou congelar o estado de um produto a qualquer momento?
+  \item A ferramenta provê mecanismos que facilitem a análise do impacto de se fazer uma mudança?
+  \item É possível recuperar o histórico de todas as mudanças realizadas no itens controlados pela
+  ferramenta?
+  \item É possível recuperar o log de todos os detalhes do trabalho realizado?
+  \item A ferramenta provê mecanismos para registrar estatísticas?
+  \item A ferramenta provê mecanismos para examinar estado dos itens?
+  \item A ferramenta provê mecanismos para selecionar aspectos para os quais deseja-se gerar relatório
+  de acompanhamento de estado de configuração e gerar tal relatório?
+  \item A ferramenta adverte sobre acesso inadequado a qualquer item para evitar mudanças não justificadas
+  ou conflitos de mudanças?
+  \item A ferramenta provê meios para monitorar bugs (quem, como e quando o bug foi gerado)?
+  \item A ferramenta provê meios que facilitem a propagação de mudanças de maneira controlada
+  através de diferentes versões de itens?
+  \item A ferramenta provê mecanismos para facilitar a comunicação entre os interessados nos itens de
+  configuração controlados?
+  \item A ferramenta provê mecanismos para resolução de conflitos quando for necessário fazer merge
+  de mudanças?
+\end{itemize}
