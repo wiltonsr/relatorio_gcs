@@ -1,13 +1,75 @@
 \chapter[Introdução]{Introdução}
 
+  O Subverison, também conhecido apenas como SVN, é um sistema de controle de versão de código aberto. O SVN gerencia arquivos e diretórios, e as modificações feitas neles ao longo do tempo \cite{svn-book}.
+  A partir deste controle de versionamento é possível que sejam recuperadas e examinadas as diversas versões de um Item de Configuração, por exemplo.
+
 \section{Histórico}
+
+  O SVN surgiu como um substituo para o Concurrent Versions System (CVS) \cite{cvs-book} no começo do ano 2000. Uma vez que o CVS já havia se firmado como um padrão de sistema de versionamento do mundo open-source não havia nenhum outro sistema de versionamento tão bom quanto o CVS. Por isso a CollabNet, Inc. decidiu então desenvolver um novo sistema de controle de versão do zero \cite{svn-book}.
+  O SVN logo atraiu diversos desenvolvedores interessados em contribuir com o projeto, pois muitas pessoas tinham as mesmas dificuldades e experiências frustantes com alguns problemas que eram encontrados no CVS e viram no SVN uma oportunidade de fazer algo a respeito disso.
+  Algumas das preocupações da equipe de desenvolvimento do SVN era que qualquer usuário pudesse migrar facilmente do CVS para o SVN. E que o SVN fosse compatível com as características do CVS, embora sem repetir as falhas e bugs dos quais eles queriam tanto se livrar.
+  Em 31 de Agosto de 2001 \cite{svn-book}, após 14 meses de desenvolvimento os responsáveis pelo Subversion pararam de usar o CVS para versionar o código fonte e começaram a utilizar o próprio SVN para isso.
 
 \section{Funções gerais}
 
+  A seguir serão descritas as funções que o SVN proporciona:
+
+  \begin{itemize}
+  \item Versionamento de diretórios
+
+  Diferente do CVS que apenas rastreia o histórico de arquivos individuais o SVN possui um sistema de arquivos que rastreia as modificações em toda a árvore de diretórios ao longo do tempo. Dessa forma tanto os arquivos quanto os diretórios são versionados.
+
+  \item Histórico de versões efetivo
+
+  Como o CVS é limitado apenas ao versionamento de arquivos, operações como cópia e renomeação—que podem ocorrer com arquivos também, mas que são realmente alterações no conteúdo de algum diretório continente—não são suportadas no CVS. Adicionalmente, no CVS você não pode substituir um arquivo versionado por alguma outra coisa com o mesmo nome sem que o novo item deixe de herdar o histórico do arquivo antigo—que talvez seja até algo com o qual não mantenha nenhuma correlação. Com o Subversion, você pode adicionar, excluir, copiar, e renomear ambos os arquivos ou diretórios. E cada novo arquivo adicionado começa com um histórico próprio e completamente novo.
+
+  \item Commits atômicos
+
+  Um conjunto de modificações ou é inteiramente registrado no repositório, ou não é registrado de forma nenhuma. Isto possibilita aos desenvolvedores criarem e registrarem alterações como blocos lógicos, e também evita problemas que possam ocorrer quando apenas uma parte de um conjunto de alterações seja enviada com sucesso ao repositório.
+
+  \item Versionamento de metadados
+
+  Cada arquivo e diretório tem um conjunto de propriedades—chaves e seus valores—associados consigo. Você pode criar e armazenar quaisquer pares chave/valor que quiser. As propriedades são versionadas ao longo do tempo, tal como os conteúdos de arquivo.
+
+  \item Escolha das camadas de rede
+
+  O Subversion tem uma noção abstrata do acesso ao repositório, tornando-o mais fácil para as pessoas implementarem novos mecanismos de rede. O Subversion pode se associar ao servidor Apache HTTP como um módulo de extensão. Isto dá ao Subversion uma grande vantagem em estabilidade e interoperabilidade, além de acesso instantâneo aos recursos existentes oferecidos por este servidor—autenticação, autorização, compactação online, dentre outros. Um servidor Subversion mais leve e independente também está disponível. Este servidor utiliza um protocolo específico o qual pode ser facilmente ser tunelado sobre SSH.
+
+  \item Manipulação consistente de dados
+
+  O Subversion exprime as diferenças de arquivo usando um algoritmo diferenciado, o qual funciona de maneira idêntica tanto em arquivos texto (compreensível para humanos) quanto em arquivos binários (incompreensível para humanos). Ambos os tipos de arquivos são igualmente armazenados de forma compactada no repositório, e as diferenças são enviadas em ambas as direções pela rede.
+
+  \item Ramificações e rotulagem eficiente
+
+  O custo de se fazer ramificações (branching) e de rotulagem (tagging) não precisa ser proporcional ao tamanho do projeto. O Subversion cria ramos e rótulos simplesmente copiando o projeto, usando um mecanismo semelhante a um hard-link. Assim essas operações levam apenas uma pequena e constante quantidade de tempo.
+
+  \item Hackability
+
+  O Subversion não tem qualquer bagagem histórica; ele é implementado como um conjunto de bibliotecas C compartilhadas com APIs bem definidas. Isto torna o Subversion extremamente manutenível e usável por outras aplicações e linguagens.
+
+  \end{itemize}
+
 \section{Fornecedor}
+
+  Como já mencionado, o SVN foi fundado em 2000 pela CollabNet, Inc., mas agora é desenvolvido como um projeto da Apache Software Foundation \cite{svn-site-home}. Além de receber ajuda de desenvolvedores da comunidade de software livre.
 
 \section{Versões disponíveis}
 
+  Atualmente o site do Subversion recomenda a utilização, apenas, de duas versões, as quais são entituladas de versões suportadas, do SVN \cite{svn-site}. Estas versões suportadas do Subversion no momento são:
+
+  \begin{itemize}
+    \item Subversion 1.9.2 (https://subversion.apache.org/download.cgi)
+
+    \item Subversion 1.8.14 (https://subversion.apache.org/download.cgi)
+
+  \end{itemize}
+
+  Embora, se for necessário ou de interesse do usuário utilizar uma versão mais antiga estão disponíveis no link (http://archive.apache.org/dist/subversion/). Neste link é possivel encontrar desde a versão 0.19.1, que é a mais antiga versão disponibilizada, até as versões suportadas pelo Apache Org.
+
 \section{Compatibilidade nos diversos sistemas operacionais}
+
+  O SVN é compatível em todos os Sistemas Operacionais modernos de Unix, Win32, BeOS, OS/2 e MacOS X. O Subversion é escrito em ANSI C e usa APR, a biblioteca Apache Portable Runtime, como uma camada de portabilidade. O cliente Subversion irá funcionar em qualquer lugar que o APR possa ser executado, que é a maioria dos lugares \cite{apache-faq}. O servidor Subversion (ou seja, o lado repositório) é o mesmo, exceto que ele não vai hospedar um repositório Berkeley DB em plataformas Win9x (Win95/Win98/WinME), pois Berkeley DB tem problemas de segmento de memória compartilhada no Win9x. Repositórios FSFS (introduzido na versão 1.1) não tem essa restrição; no entanto, devido a uma limitação no suporte de bloqueio de arquivo do Win9x, eles também não funcionam no Win9x.
+
+  Para reiterar, o cliente Subversion pode ser executado em qualquer plataforma onde APR é executado. O servidor Subversion também pode ser executado em qualquer plataforma onde APR rode, mas não pode hospedar um repositório em Win95/Win98/WinMe \cite{apache-faq}.
 
 \section{Outras informações gerais sobre a ferramenta}
