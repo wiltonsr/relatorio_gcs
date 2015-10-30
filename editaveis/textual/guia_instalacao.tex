@@ -1,7 +1,34 @@
 \chapter[Guia de Instalação]{Guia de Instalação}
 
-\section{Passo a passo de instalação da ferramenta}
-
+\section{Instalação da ferramenta}
+    
+    O jeito mais fácil de instalar o Subversion em sistemas Unix-like, como o Ubuntu,
+    é utilizando o sistema de pacotes nativo do sistema. Portanto, para a instalação do Subversion,
+    utilize o gerenciador de pacotes do Ubuntu \textit{apt-get}, executando o seguinte comando:
+    
+    \colorbox{PineGreen}{
+      \begin{minipage}{0.6\linewidth}
+      \flushleft{ 
+      \textbf{sudo apt-get install subversion libapache2-svn}
+      }
+      \end{minipage}
+    }
+    
+    Com este comando, obtém-se também o pacote de configuração do servidor Apache para o uso com o Subversion.
+  
 \section{Disponibilidade de documentação de instalação}
-
+  
+  A Fundação Apache mantém uma vasta documentação para a instalação do Subversion de diferentes maneiras
+  para diferentes sistemas operacionais \footnotemark, porém a documentação não é muito clara e o Subversion necessita
+  \footnotetext{Disponível em: \url{http://svn.apache.org/repos/asf/subversion/trunk/INSTALL}.}
+  de algumas bibliotecas auxiliares para o correto funcionamento \cite{svn-book}, o que pode complicar demais o processo
+  de instalação manual utilizando o código fonte. Portanto, para a instalação do Subversion no Ubuntu, foi utilizado o
+  tutorial fornecido na Wiki Ubuntu Brazil \footnotemark.
+  \footnotetext{Disponível em: \url{http://wiki.ubuntu-br.org/Subversion}.}
+  
+  
 \section{Principais dificuldades encontradas}
+  
+  A maior dificuldade encontrada foi na tentativa de instalar o Subversion utilizando o código fonte, pois dependia de 
+  várias bibliotecas auxiliares e, mesmo depois de obter essas bibliotecas, não foi possível concluir a instalação da
+  ferramenta.
