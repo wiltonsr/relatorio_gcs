@@ -173,23 +173,124 @@ Para ler:
 
 \end{multicols}
 
-\section{Passo a passo para o uso das principais funcionalidades da ferramenta}
+\section{Principais funcionalidades da ferramenta}
 
-Para ver os arquivos modificados o comando é: "svn status"
+Como uma ferramenta de controle de versão, o Subversion oferece as seguintes funcionalidades básicas: 
 
-Para mostrar as diferenças m um arquivo "svn diff"
+\begin{itemize}
+ \item Criar repositórios para manter projetos; (svnadim create) (svn mkdir) (svn checkout)
+ \item Adicionar arquivos para o controle de versão; 
+ \item Registrar mudanças em um ou mais arquivos; (status) (add) (commit) (log)
+ \item Rastrear alterações em um ou mais arquivos;
+\end{itemize}
 
-Para criar uma cópia de trabalho o comando é "svn checkout"
+Com o repositório e a cópia de trabalho local criados com o projeto em questão, para monitorar e controlar as
+alterações nos arquivos e diretórios, basicamente são utilizados os seguintes comandos \cite{svn-book}:
 
-Para ver as revisões criadas o comando é: "svn status --verbose"
+\begin{itemize}
+ \item \colorbox{PineGreen}{
+	\begin{minipage}{.15\linewidth}
+	\flushleft{ 
+	  \textbf{svn status}
+	}
+	\end{minipage}
+	}
+    
+    \subitem Utilize esse comando para verificar o estado atual dos arquivos e diretórios na cópia de trabalho.
+	     Com este comando é possível visualizar quais arquivos foram modificados localmente.
+	     Utilize este comando dentro do diretório da cópia de trabalho a qualquer momento para verificar seu estado.
 
-Para mostrar o histórico de mudanças o comando é "svn log"
+	     
+\item \colorbox{PineGreen}{
+	\begin{minipage}{.53\linewidth}
+	\flushleft{
+	  \textbf{svn diff CAMINHO/DO/ARQUIVO}
+	}
+	\end{minipage}
+	}
+    
+    \subitem Este comando permite visualizar as mudanças realizadas em um arquivo na cópia de trabalho.
+	     Pode ser especificado um arquivo específico para vizualizar as modificações, passando o seu caminho como
+	     parâmetro (CAMINHO/ARQUIVO).
+	     Utilize este comando dentro do diretório da cópia de trabalho a qualquer momento para visualizar as modificações
+	     de um arquivo.
+    
+\item \colorbox{PineGreen}{
+	\begin{minipage}{.53\linewidth}
+	\flushleft{ 
+	  \textbf{svn add CAMINHO/DO/ARQUIVO}
+	}
+	\end{minipage}
+	}
+    
+    \subitem Este comando permite adicionar um arquivo ou diretório para o controle de versão, agendando-o para um commit.
+	     O caminho do arquivo que se deseja adicionar é passado como parâmetro.
+	     Utilize este comando quando houver arquivos ou diretórios que não estão sob controle de versão 
+	     (com uma interrogação no resultado do \textbf{svn status}).
+    
+\item \colorbox{PineGreen}{
+	\begin{minipage}{.57\linewidth}
+	\flushleft{ 
+	  \textbf{svn revert CAMINHO/DO/ARQUIVO}
+	}
+	\end{minipage}
+	}
+    
+    \subitem Este comando permite retirar um arquivo ou diretório do controle de versão.
+	     É a operação oposta do \textbf{svn add}, desfazendo as alterações do arquivo.
+	     O caminho do arquivo que se deseja retirar é passado como parâmetro.
 
-Para desfazer as alterações em um arquivo: "svn revert <arquivo>"
+\item \colorbox{PineGreen}{
+	\begin{minipage}{.57\linewidth}
+	\flushleft{ 
+	  \textbf{svn commit -m "Mensagem do commit"}
+	}
+	\end{minipage}
+	}
+    
+    \subitem Este comando permite enviar as alterações na cópia de trabalho local para o repositório.
+	     O commit deve conter uma mensagem que descreva as alterações contidas naquele commit.
+	     Utilize este comando quando já tiver agendado arquivos com modificações e quando desejar
+	     gravar suas alterações no repositório.
 
-Para criar uma branch, deve ser ser feita uma cópia da pasta trunk para a pasta de branchs com o seguinte comando:
+\item \colorbox{PineGreen}{
+	\begin{minipage}{.18\linewidth}
+	\flushleft{ 
+	  \textbf{svn update}
+	}
+	\end{minipage}
+	}
+    
+    \subitem Este comando permite atualizar a cópia de trabalho local com o conteúdo do repositório.
+	     Utilize este comando para atualizar sua cópia de trabalho após um commit, por exemplo.
+    
+\item \colorbox{PineGreen}{
+	\begin{minipage}{.13\linewidth}
+	\flushleft{ 
+	  \textbf{svn log}
+	}
+	\end{minipage}
+	}
+	
+    \subitem Este comando permite vizualizar o histórico de revisões na sua cópia de trabalho local.
+    
+\end{itemize}
 
-"svn copy <caminho da pasta original> \ <caminho da pasta de destino, essa pasta deve possuir o nome da branch> -m "mensagem\">"
+% Para ver os arquivos modificados o comando é: "svn status"
+% 
+% Para mostrar as diferenças m um arquivo "svn diff"
+% 
+% Para criar uma cópia de trabalho o comando é "svn checkout"
+% 
+% Para ver as revisões criadas o comando é: "svn status --verbose"
+% 
+% Para mostrar o histórico de mudanças o comando é "svn log"
+% 
+% Para desfazer as alterações em um arquivo: "svn revert <arquivo>"
+% 
+% Para criar uma branch, deve ser ser feita uma cópia da pasta trunk para a pasta de branchs com o seguinte comando:
+% 
+% "svn copy <caminho da pasta original> \ <caminho da pasta de destino, essa pasta deve possuir o nome da branch> -m "mensagem\">"
 
 \section{Verificação das funcionalidades descritas a seguir em forma de pergunta:}
 
