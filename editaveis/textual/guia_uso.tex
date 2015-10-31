@@ -241,8 +241,7 @@ Para criar uma branch, deve ser ser feita uma cópia da pasta trunk para a pasta
 
   \item É possível visualizar as diferenças entre as versões incluindo a razão para estas 
   diferenças?
-
-      O SVN permite a visualização das diferenças entre as versões, mas não apresenta a razão das diferenças.
+  O SVN permite a visualização das diferenças entre as versões, mas não apresenta a razão das diferenças.
   
   \item É possível identificar dependências entre artefatos, são elas: artefatos que pertencem a um mesmo item de configuração; itens de configuração de um componente; versão de itens de configuração de uma baseline; artefatos que são utilizados para construir um outro artefato  (por exemplo, um código é usado para construir a funcionalidade de um outro código)?
   
@@ -267,4 +266,14 @@ Para criar uma branch, deve ser ser feita uma cópia da pasta trunk para a pasta
   configuração controlados?
   \item A ferramenta provê mecanismos para resolução de conflitos quando for necessário fazer merge
   de mudanças?
+  Sim. O SVN usa o modelo \textit{copy-modify-merge}(copiar-modificar-fundir) que adverte aos usuários quando sua cópia local está em situação de conflito.
+  Esse modelo funciona da seguinte maneira: 
+  Cada usuário cria uma cópia de trabalho pessoal a partir do repositório do projeto. Os usuários, então, 
+  trabalham de forma simultânea e independente fazendo modificações em suas cópias privadas. Quando as mudanças 
+  feitas nas cópias privadas são submetidas a uma nova versão ao repositório do projeto, o SVN então vai fundir essas cópias.
+  Quando Dois usuários fazem alteração a uma cópia ao mesmo tempo e submete a uma nova versão, o último usuário que submeter será informado
+  que a sua cópia privada está desatualizada, ou seja, o arquivo de seu repositório local foi alterado desde a 
+  última vez em que ele foi copiado. Com isso, o SVN pode ajudá-lo a fundir todas as alterações do repositório na sua cópia. 
+  O SVN não consegue solucionar possíveis conflitos automaticamente, mas ele sinaliza no arquivo as alterações que estão em conflito
+   permitindo com que o usuário resolva manualmente.
 \end{itemize}
