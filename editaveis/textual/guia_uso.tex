@@ -62,7 +62,7 @@ De acordo com \citeonline{svn-book}, quando você cria um repositório no SVN el
 \end{figure}
 
 \pagebreak
-
+\label{estrutura}
 \begin{itemize}
 
 \item conf: Pasta que contém arquivos de configuração do repositório.
@@ -344,15 +344,15 @@ alterações nos arquivos e diretórios, basicamente são utilizados os seguinte
     
     \subitem Este comando permite atualizar a cópia de trabalho local com o conteúdo do repositório.
 	     Utilize este comando para atualizar sua cópia de trabalho após um commit, por exemplo.
-    
-\item \colorbox{PineGreen}{
+      
+\item \label{comando_log}
+\colorbox{PineGreen}{
 	\begin{minipage}{.13\linewidth}
 	\flushleft{ 
 	  \textbf{svn log}
 	}
 	\end{minipage}
 	}
-	
     \subitem Este comando permite vizualizar o histórico de revisões na sua cópia de trabalho local.
     
 \end{itemize}
@@ -373,53 +373,89 @@ alterações nos arquivos e diretórios, basicamente são utilizados os seguinte
 % 
 % "svn copy <caminho da pasta original> \ <caminho da pasta de destino, essa pasta deve possuir o nome da branch> -m "mensagem\">"
 
-\section{Verificação das funcionalidades descritas a seguir em forma de pergunta:}
+\section{Verificação de algumas funcionalidades}
 
 \begin{itemize}
-  \item A ferramenta provê mecanismo de backup dos itens controlados pela ferramenta?
+  \item \textit{A ferramenta provê mecanismo de backup dos itens controlados pela ferramenta?}
 
-    Sim. O SVN provê um comando que possibilita a realização de um backup do repositório, caso algo dê errado. O comando é:
-    "svnadmin hotcopy <caminho do repositorio> <caminho de backup>"
+    Sim. De acordo com \citeonline{svn-book}, o SVN provê um comando que possibilita a realização de um backup do repositório, caso algo dê errado. O comando é:
 
-  \item A ferramenta provê algum mecanismo de controle de acesso?
-    Sim. No arquivo "svnserve.conf" são descritos os níveis de acesso para usuários autenticados e não autenticados
+    \begin{centering}
+    \colorbox{PineGreen}{
+    \begin{minipage}{420px}
+      \textbf{svnadmin hotcopy <caminho do repositorio> <caminho de backup>}
+    \end{minipage}
+    }
 
-  \item A ferramenta controla arquivos de diversos formatos, seja código, executáveis, documentação e diagramas?
-    Sim. O SVN controla versão de todos os documentos colocados no repositório.
+    \end{centering} 
 
-  \item A ferramenta registra versões dos itens de configuração?
-    Sim. Cada alteração feita é registrada em um número de revisão. É possível visualizar um histórico de alterações com as seguintes informações:
+  \item \textit{A ferramenta provê algum mecanismo de controle de acesso?}
+   
+    Sim. No arquivo \textbf{svnserve.conf} são descritos os níveis de acesso para usuários autenticados e não autenticados.\cite{svn-book}
 
-    \subitem Nome do autor da alteração
-    \subitem Data e hora
-    \subitem Mensagem que descreve a alteração
+    Como fazer configuração de acesso pode ser visto na seção \ref{secao_acesso}.
 
-  \item É possível visualizar as diferenças entre as versões incluindo a razão para estas 
-  diferenças?
+  \item \textit{A ferramenta controla arquivos de diversos formatos, seja código, executáveis, documentação e diagramas?}
+    
+    Sim. O SVN controla a versão dos arquivos colocados no repositório.
+
+  \item \textit{A ferramenta registra versões dos itens de configuração?}
+   
+    Sim. Cada alteração feita é registrada em um número de revisão do repositório que pode ser visto no arquivo \textbf{format} como já explicado na seção \ref{estrutura}.
+
+    É possível visualizar um histórico de alterações com as seguintes informações: Nome do autor da alteração, Data e hora, Mensagem que descreve a alteração. \cite{svn-book}
+
+    Para a visualização desse histórico na cópia de trabalho o comando pode ser visto na seção \ref{comando_log}. A adição dos caracteres \textbf{\textit{--verbose}} ao comando mostra também as pastas que sofreram mudanças. 
+
+    Também é possível visualizar o estado de cada item na sua cópia de trabalho através do seguinte comando: \cite{svn-book}
+
+    \begin{centering}
+    \colorbox{PineGreen}{
+    \begin{minipage}{120px}
+      \textbf{svn status --verbose}
+    \end{minipage}
+    }
+
+    \end{centering} 
+
+    Para a visualização de um histórico de revisões com o número da revisão, o autor e a pasta que sofreu a alteração, o comando a ser dado é:
+
+     \begin{centering}
+    \colorbox{PineGreen}{
+    \begin{minipage}{120px}
+      \textbf{svn list --verbose}
+    \end{minipage}
+    }
+
+    \end{centering} 
+
+  \item \textit{É possível visualizar as diferenças entre as versões incluindo a razão para estas 
+  diferenças?}
 
       O SVN permite a visualização das diferenças entre as versões, mas não apresenta a razão das diferenças.
   
-  \item É possível identificar dependências entre artefatos, são elas: artefatos que pertencem a um mesmo item de configuração; itens de configuração de um componente; versão de itens de configuração de uma baseline; artefatos que são utilizados para construir um outro artefato  (por exemplo, um código é usado para construir a funcionalidade de um outro código)?
+  \item \textit{É possível identificar dependências entre artefatos, são elas: artefatos que pertencem a um mesmo item de configuração; itens de configuração de um componente; versão de itens de configuração de uma baseline; artefatos que são utilizados para construir um outro artefato  (por exemplo, um código é usado para construir a funcionalidade de um outro código)?}
   
-  
-  \item É possível selecionar itens de configuração compatível com a versão válida e consistente do
-  produto?
-  \item É possível fazer snapshots ou congelar o estado de um produto a qualquer momento?
-  \item A ferramenta provê mecanismos que facilitem a análise do impacto de se fazer uma mudança?
-  \item É possível recuperar o histórico de todas as mudanças realizadas no itens controlados pela
-  ferramenta?
-  \item É possível recuperar o log de todos os detalhes do trabalho realizado?
-  \item A ferramenta provê mecanismos para registrar estatísticas?
-  \item A ferramenta provê mecanismos para examinar estado dos itens?
-  \item A ferramenta provê mecanismos para selecionar aspectos para os quais deseja-se gerar relatório
-  de acompanhamento de estado de configuração e gerar tal relatório?
-  \item A ferramenta adverte sobre acesso inadequado a qualquer item para evitar mudanças não justificadas
-  ou conflitos de mudanças?
-  \item A ferramenta provê meios para monitorar bugs (quem, como e quando o bug foi gerado)?
-  \item A ferramenta provê meios que facilitem a propagação de mudanças de maneira controlada
-  através de diferentes versões de itens?
-  \item A ferramenta provê mecanismos para facilitar a comunicação entre os interessados nos itens de
-  configuração controlados?
-  \item A ferramenta provê mecanismos para resolução de conflitos quando for necessário fazer merge
-  de mudanças?
+        O SVN não provê nenhum mecanismo para estabelecer a dependência entre os artefatos.
+
+  \item \textit{É possível selecionar itens de configuração compatível com a versão válida e consistente do
+  produto?}
+  \item \textit{É possível fazer snapshots ou congelar o estado de um produto a qualquer momento?}
+  \item \textit{A ferramenta provê mecanismos que facilitem a análise do impacto de se fazer uma mudança?}
+  \item \textit{É possível recuperar o histórico de todas as mudanças realizadas no itens controlados pela
+  ferramenta?}
+  \item \textit{É possível recuperar o log de todos os detalhes do trabalho realizado?}
+  \item \textit{A ferramenta provê mecanismos para registrar estatísticas?}
+  \item \textit{A ferramenta provê mecanismos para examinar estado dos itens?}
+  \item \textit{A ferramenta provê mecanismos para selecionar aspectos para os quais deseja-se gerar relatório
+  de acompanhamento de estado de configuração e gerar tal relatório?}
+  \item \textit{A ferramenta adverte sobre acesso inadequado a qualquer item para evitar mudanças não justificadas
+  ou conflitos de mudanças?}
+  \item \textit{A ferramenta provê meios para monitorar bugs (quem, como e quando o bug foi gerado)?}
+  \item \textit{A ferramenta provê meios que facilitem a propagação de mudanças de maneira controlada
+  através de diferentes versões de itens?}
+  \item \textit{A ferramenta provê mecanismos para facilitar a comunicação entre os interessados nos itens de
+  configuração controlados?}
+  \item \textit{A ferramenta provê mecanismos para resolução de conflitos quando for necessário fazer merge
+  de mudanças?}
 \end{itemize}
