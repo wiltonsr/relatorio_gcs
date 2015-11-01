@@ -1,10 +1,31 @@
 \chapter[Guia de Uso]{Guia de Uso}
 
+Nesse capítulo é apresentado como utilizar o SVN, através da explicação das primeiras configurações e das principais funcionalidades.
+
 \section{Passo a passo para o primeiro contato com a ferramenta}
+
+Nessa seção são apresentadas as configurações e os passos iniciais para a criação de um repositório utilizando o SVN. Nessa seção serão tratados:
+
+\begin{itemize}
+
+\item Criação de um repositório:
+  
+  \subitem Estrutura inicial do repositório;
+  \subitem Estrutura recomendada do repositório;
+  \subitem Configuração de acesso a um repositório;
+
+\item Disponibilização de um repositório;
+
+\item Acesso a um repositório;
+
+\item Cópias de trabalho;
+    \subitem Operações principais;
+
+\end{itemize}
 
 \subsection{Criando um repositório}
 
-Agora que o SVN já está instalado, para criação de um repositório deve ser dado o seguinte comando:
+Agora que o SVN já está instalado, de acordo com \citeonline{svn-book}, para criação de um repositório deve ser dado o seguinte comando:
 
 \begin{centering}
 
@@ -16,16 +37,32 @@ Agora que o SVN já está instalado, para criação de um repositório deve ser 
 }
 \end{centering}
 
-\subsection{O repositório}
+Para importar uma pasta para o repositório, de acordo com \citeonline{wiki-svn}, deve ser dado o seguinte comando:
 
-De acordo com \cite{svn-book}, quando você cria um repositório no SVN ele contém a seguinte estrutura de pastas:
+
+\begin{centering}
+
+\colorbox{PineGreen}{
+\begin{minipage}{450px}
+  \textbf{svn import /caminho/da/pasta/a/ser/copiada file:///caminho/do/repositorio}
+
+\end{minipage}
+}
+\end{centering}
+
+
+\subsubsection{O repositório}
+
+De acordo com \citeonline{svn-book}, quando você cria um repositório no SVN ele contém a estrutura de pastas da Figura \ref{fig:estrutura}.
 
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=1]{figuras/repositorio.png}
 \caption{Estrutura do repositório. Baseado em \cite{svn-book}}
+\label{fig:estrutura}
 \end{figure}
 
+\pagebreak
 
 \begin{itemize}
 
@@ -43,40 +80,71 @@ De acordo com \cite{svn-book}, quando você cria um repositório no SVN ele cont
 
 \end{itemize}
 
+
+O repositório pode ser configurado com a estrutura de pastas que o usuário desejar, todavia existe um padrão recomendado que pode ser visto na Figura 
+\ref{fig:estrutura_repo}.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=1]{figuras/estrutura_repo.png}
+\caption{Estrutura recomendada do repositório. Baseado em \cite{svn-book}}
+\label{fig:estrutura_repo}
+\end{figure}
+
+\begin{itemize}
+  \item trunk: Pasta principal que contém os arquivos do repositório, é onde fica o projeto testado e sem erros. \cite{wiki-svn}
+
+  \item branches: Pasta utilizada para guardar os arquivos do repositório, "onde você poderá usar para trabalhar em uma nova feature e depois fazer um merge dela com o mainline trunk". \cite{wiki-svn};
+
+  \item tags: Pasta que armazena "snapshots da data do Release de uma dada versão". \cite{wiki-svn}
+\end{itemize}
+
+Para criar essa estrutura deve ser dado o comando a seguir para cada uma das pastas: \cite{wiki-svn}
+
+\begin{centering}
+
+\colorbox{PineGreen}{
+\begin{minipage}{280px}
+  \textbf{svn mkdir file:///caminho/do/repositorio/pasta}
+\end{minipage}
+}
+
+\end{centering}
+
+\subsubsection{Configurando o acesso ao repositório}
+\label{secao_acesso}
+Para configurar o controle de acesso ao repositório devem ser editados os arquivos: \cite{wiki-svn}
+
+\begin{centering}
+\colorbox{PineGreen}{
+\begin{minipage}{250px}
+  \textbf{caminho/do/repositorio/conf/svnserve.conf}
+  \textbf{caminho/do/repositorio/conf/passwd}
+\end{minipage}
+}
+\end{centering}
+
+No arquivo \textit{svnserve.conf} deve ser descomentada a linha \textbf{password-db = passwd} e no arquivo \textit{svnserve.conf}
+deve ser escrito o nome do usuário e a senha da seguinte forma: \textbf{usuário = senha}. \cite{wiki-svn}
+
+\begin{centering}
+Exemplo:
+
+\colorbox{PineGreen}{
+\begin{minipage}{100px}
+
+  \textbf{usuario1 = 12345}
+\end{minipage}
+}
+\end{centering}
+
 \subsection{Disponibilizando um repositório}
 
-\subsubsection{Escolhendo um servidor}
-
-Um repositório pode ser mantido apenas localmente e seu acesso torna-se restrito à máquina a qual ele foi criado. Mas isso não é muito vantajoso, dessa forma um repositório deve ser disponbilizado em um servidor para que as pessoas possam acessá-lo de qualquer lugar. Dessa forma, \cite{svn-book} recomenda os servidores da Tabela \ref{tab:servidores}.
-
-\begin{flushleft}
-\begin{table}[!h]
-
-\caption{Comparação entre os servidores. Fonte: \cite{svn-book}}
-\label{tab:servidores}
-\begin{tabular}{|l|l|l|l|}
-\hline
-\rowcolor[HTML]{01796F} 
-{\color[HTML]{000000} \textbf{Característica}}                            & {\color[HTML]{000000} \textbf{\begin{tabular}[c]{@{}l@{}}Apache + \\ mod\_dav\_svn\end{tabular}}}                                                                           & {\color[HTML]{000000} \textbf{svnserve}}                                                                                                              & {\color[HTML]{000000} \textbf{\begin{tabular}[c]{@{}l@{}}svnserve\\ sobre SSH\end{tabular}}}                                       \\ \hline
-\begin{tabular}[c]{@{}l@{}}Opções de \\ autenticação\end{tabular}         & \begin{tabular}[c]{@{}l@{}}Autenticação básica \\HTTP(S), certificados \\ X.509, LDAP,\\ NTLM, \\ou quaisquer \\ outros mecanismos \\disponíveis ao  \\ Apache httpd\end{tabular} & CRAM-MD5                                                                                                                                              & SSH                                                                                                                                \\ \hline
-\begin{tabular}[c]{@{}l@{}}Opções para \\ contas de usuários\end{tabular} & \begin{tabular}[c]{@{}l@{}}arquivo 'users' \\ privativo\end{tabular}                                                                                                         & \begin{tabular}[c]{@{}l@{}}arquivo 'users' \\ privativo\end{tabular}                                                                                                           & contas no sistema                                                                                                                  \\ \hline
-\begin{tabular}[c]{@{}l@{}}Opções de \\ autorização\end{tabular}          & \begin{tabular}[c]{@{}l@{}}acesso leitura/escrita pode \\ser dado para o \\repositório como um \\ todo, ou especificado por \\ caminho\end{tabular}                              & \begin{tabular}[c]{@{}l@{}}acesso leitura/escrita\\  pode ser dado para\\  o repositório como um\\  todo, ou especificado \\ por caminho\end{tabular} & \begin{tabular}[c]{@{}l@{}}acesso leitura/escrita\\  passível \\ de ser dado\\  apenas ao repositório\\  como um todo\end{tabular} \\ \hline
-Criptografia                                                              & através de SSL opcional                                                                                                                                                     & nenhuma                                                                                                                                               & túnel SSH                                                                                                                          \\ \hline
-Registro de log                                                           & \begin{tabular}[c]{@{}l@{}}logs completos \\do Apache para cada \\ requisição HTTP, \\ com opcional log\\  “alto nível” para operações\\ do cliente em geral\end{tabular}     & sem log                                                                                                                                               & sem log                                                                                                                            \\ \hline
-Interoperabilidade                                                        & \begin{tabular}[c]{@{}l@{}}parcialmente usável por \\ outros clientes WebDAV\end{tabular}                                                                                   & \begin{tabular}[c]{@{}l@{}}se comunica apenas \\ com clientes svn\end{tabular}                                                                        & \begin{tabular}[c]{@{}l@{}}se comunica apenas\\  com clientes svn\end{tabular}                                                     \\ \hline
-\begin{tabular}[c]{@{}l@{}}Visualização \\ pela web\end{tabular}          & \begin{tabular}[c]{@{}l@{}}suporte existente limitado,\\ ou também \\ por meio de ferramentas \\ de terceiros \\ como o ViewVC\end{tabular}                                      & \begin{tabular}[c]{@{}l@{}}apenas por meio de\\  ferramentas \\de terceiros \\ como o ViewVC\end{tabular}                                               & \begin{tabular}[c]{@{}l@{}}apenas por meio de \\ ferramentas \\de terceiros\\  como o ViewVC\end{tabular}                            \\ \hline
-Velocidade                                                                & um pouco mais lento                                                                                                                                                         & \begin{tabular}[c]{@{}l@{}}um pouco mais \\ rápido\end{tabular}                                                                                       & \begin{tabular}[c]{@{}l@{}}um pouco \\ mais rápido\end{tabular}                                                                    \\ \hline
-\begin{tabular}[c]{@{}l@{}}Configuração\\  inicial\end{tabular}           & um tanto complexa                                                                                                                                                           & extremamente simples                                                                                                                                  & \begin{tabular}[c]{@{}l@{}}Moderamente \\ simples\end{tabular}                                                                                                \\ \hline
-\end{tabular}
-\end{table}
-
-\end{flushleft}
-
-\subsubsection{Escolhendo um banco de dados}
+Um repositório pode ser mantido apenas localmente e seu acesso torna-se restrito à máquina a qual ele foi criado. Mas isso não é muito vantajoso, dessa forma um repositório deve ser disponibilizado em um servidor para que as pessoas possam acessá-lo de qualquer lugar. As opções de servidor podem ser vistas no anexo \ref{servidores}. 
 
 \subsection{Acessando um repositório}
 
-  Os repositórios criados para controle de versão com o SVN são acessados através de URLs, seguindo os seguintes padrões \cite{svn-book}:
+  Os repositórios criados para controle de versão com o SVN são acessados através de URLs, seguindo os seguintes padrões: \cite{svn-book}
 
 \begin{centering}
 
@@ -88,7 +156,7 @@ Velocidade                                                                & um p
 \end{minipage}
 }
 
-\textbf{Para repositórios locais:} a URL ganha o prefixo \textit{file:}. Podem ser escritos com o nome do servidor, ou sem.
+\textbf{Para repositórios locais:} a URL ganha o prefixo \textit{file:}. Podem ser escritos com o nome do servidor, ou sem. E de acordo com \citeonline{wiki-svn}, para acessar repositórios locais deve apenas digitar o comando \textbf{svn co url\_definida}.
 \end{centering}
 
 \begin{multicols}{2} 
@@ -139,7 +207,7 @@ svn+ssh://                              & mesmo que svn://, mas através de um t
   
 O SVN trabalha com cópias de trabalho. Uma cópia de trabalho consiste na mesma estrutura do repositório para uso privado. Ou seja, é a cópia local do repositório que pode ser editada pelo usuário. 
 
-Para criar uma cópia de trabalho deve ser digitado o seguinte comando \cite{svn-book}:
+Para criar uma cópia de trabalho deve ser digitado o seguinte comando: \citeonline{svn-book}
 
 
 \begin{centering}
@@ -151,20 +219,7 @@ Para criar uma cópia de trabalho deve ser digitado o seguinte comando \cite{svn
 
 \end{centering}
 
-O repositório pode ser configurado com a estrutura de pastas que o usuário desejar, todavia existe um padrão recomendado que pode ser visto na Figura 
-\ref{estrutura_repo}.
-
-\begin{figure}[!htb]
-\label{estrutura_repo}
-\centering
-\includegraphics[scale=1]{figuras/estrutura_repo.png}
-\caption{Estrutura recomendada do repositório. Baseado em \cite{svn-book}}
-\end{figure}
-
-
-\pagebreak
-
-\subsection{Como funciona a relação entre o repositório e a cópia de trabalho?}
+\subsubsection{Como funciona a relação entre o repositório e a cópia de trabalho?}
 
 \begin{figure}[!htb]
 \centering
@@ -174,7 +229,7 @@ O repositório pode ser configurado com a estrutura de pastas que o usuário des
 
 
 Para que os outros membros do projeto tenham acesso ao que foi produzido na cópia de trabalho, o SVN permite que o usuário escreva no repositório as alterações feitas
-e para ter acesso às atualizações feitas por outros membros, é permitido ao usuário ler o repositório \cite{svn-book}.
+e para ter acesso às atualizações feitas por outros membros, é permitido ao usuário ler o repositório. \cite{svn-book}
 
 \begin{multicols}{2} 
 
@@ -191,7 +246,7 @@ e para ter acesso às atualizações feitas por outros membros, é permitido ao 
 Para ler:
 
 \colorbox{PineGreen}{
-\begin{minipage}{200px}
+\begin{minipage}{100px}
 \flushleft{ 
   \textbf{svn update}
 }
