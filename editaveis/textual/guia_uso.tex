@@ -9,7 +9,7 @@ Nessa seção são apresentadas as configurações e os passos iniciais para a c
 \begin{itemize}
 
 \item Criação de um repositório:
-  
+
   \subitem Estrutura inicial do repositório;
   \subitem Estrutura recomendada do repositório;
   \subitem Configuração de acesso a um repositório;
@@ -29,7 +29,7 @@ Agora que o SVN já está instalado, de acordo com \citeonline{svn-book}, para c
 
 \begin{centering}
 
-\colorbox{PineGreen}{
+\colorbox{Gray}{
 \begin{minipage}{250px}
   \textbf{svnadmin create <nome do repositorio>}
 
@@ -42,7 +42,7 @@ Para importar uma pasta para o repositório, de acordo com \citeonline{wiki-svn}
 
 \begin{centering}
 
-\colorbox{PineGreen}{
+\colorbox{Gray}{
 \begin{minipage}{450px}
   \textbf{svn import /caminho/da/pasta/a/ser/copiada file:///caminho/do/repositorio}
 
@@ -80,7 +80,7 @@ De acordo com \citeonline{svn-book}, quando você cria um repositório no SVN el
 \end{itemize}
 
 
-O repositório pode ser configurado com a estrutura de pastas que o usuário desejar, todavia existe um padrão recomendado que pode ser visto na Figura 
+O repositório pode ser configurado com a estrutura de pastas que o usuário desejar, todavia existe um padrão recomendado que pode ser visto na Figura
 \ref{fig:estrutura_repo}.
 
 \begin{figure}[!htb]
@@ -102,7 +102,7 @@ Para criar essa estrutura deve ser dado o comando a seguir para cada uma das pas
 
 \begin{centering}
 
-\colorbox{PineGreen}{
+\colorbox{Gray}{
 \begin{minipage}{280px}
   \textbf{svn mkdir file:///caminho/do/repositorio/pasta}
 \end{minipage}
@@ -115,7 +115,7 @@ Para criar essa estrutura deve ser dado o comando a seguir para cada uma das pas
 Para configurar o controle de acesso ao repositório devem ser editados os arquivos: \cite{wiki-svn}
 
 \begin{centering}
-\colorbox{PineGreen}{
+\colorbox{Gray}{
 \begin{minipage}{250px}
   \textbf{caminho/do/repositorio/conf/svnserve.conf}
   \textbf{caminho/do/repositorio/conf/passwd}
@@ -129,7 +129,7 @@ deve ser escrito o nome do usuário e a senha da seguinte forma: \textbf{usuári
 \begin{centering}
 Exemplo:
 
-\colorbox{PineGreen}{
+\colorbox{Gray}{
 \begin{minipage}{100px}
 
   \textbf{usuario1 = 12345}
@@ -139,7 +139,7 @@ Exemplo:
 
 \subsection{Disponibilizando um repositório}
 
-Um repositório pode ser mantido apenas localmente e seu acesso torna-se restrito à máquina a qual ele foi criado. Mas isso não é muito vantajoso, dessa forma um repositório deve ser disponibilizado em um servidor para que as pessoas possam acessá-lo de qualquer lugar. As opções de servidor podem ser vistas no anexo \ref{servidores}. 
+Um repositório pode ser mantido apenas localmente e seu acesso torna-se restrito à máquina a qual ele foi criado. Mas isso não é muito vantajoso, dessa forma um repositório deve ser disponibilizado em um servidor para que as pessoas possam acessá-lo de qualquer lugar. As opções de servidor podem ser vistas no anexo \ref{servidores}.
 
 \subsection{Acessando um repositório}
 
@@ -149,7 +149,7 @@ Um repositório pode ser mantido apenas localmente e seu acesso torna-se restrit
 
 \textbf{Para o servidor:} É especificado o nome do servidor e a porta.
 
-\colorbox{PineGreen}{
+\colorbox{Gray}{
 \begin{minipage}{220px}
   \textbf{http://svn.example.com:9834/repos}
 \end{minipage}
@@ -158,12 +158,12 @@ Um repositório pode ser mantido apenas localmente e seu acesso torna-se restrit
 \textbf{Para repositórios locais:} a URL ganha o prefixo \textit{file:}. Podem ser escritos com o nome do servidor, ou sem. E de acordo com \citeonline{wiki-svn}, para acessar repositórios locais deve apenas digitar o comando \textbf{svn co url\_definida}.
 \end{centering}
 
-\begin{multicols}{2} 
+\begin{multicols}{2}
 
 
 \flushright{O nome do servidor como \textit{localhost}:
 
-\colorbox{PineGreen}{
+\colorbox{Gray}{
 \begin{minipage}{210px}
   \textbf{file://localhost/caminho/repositorio}
 \end{minipage}
@@ -172,9 +172,9 @@ Um repositório pode ser mantido apenas localmente e seu acesso torna-se restrit
 
 Ou sem especificação do servidor:
 
-\colorbox{PineGreen}{
+\colorbox{Gray}{
 \begin{minipage}{200px}
-\flushleft{ 
+\flushleft{
   \textbf{file:///caminho/repositorio}
 }
 \end{minipage}
@@ -190,7 +190,7 @@ As possíveis URLs de acesso podem ser vistas na Tabela \ref{tab:urls}.
 \label{tab:urls}
 \begin{tabular}{|l|l|}
 \hline
-\rowcolor[HTML]{01796F} 
+\rowcolor[HTML]{01796F}
 {\color[HTML]{000000} \textbf{Esquema}} & {\color[HTML]{000000} \textbf{Método de Acesso}}                             \\ \hline
 file:///                                & acesso direto ao repositório (em um disco local).                            \\ \hline
 http://                                 & acesso via protocolo WebDAV em um servidor Apache especialmente configurado. \\ \hline
@@ -203,14 +203,14 @@ svn+ssh://                              & mesmo que svn://, mas através de um t
 
 
 \subsection{Cópias de trabalho}
-  
-O SVN trabalha com cópias de trabalho. Uma cópia de trabalho consiste na mesma estrutura do repositório para uso privado. Ou seja, é a cópia local do repositório que pode ser editada pelo usuário. 
+
+O SVN trabalha com cópias de trabalho. Uma cópia de trabalho consiste na mesma estrutura do repositório para uso privado. Ou seja, é a cópia local do repositório que pode ser editada pelo usuário.
 
 Para criar uma cópia de trabalho deve ser digitado o seguinte comando: \citeonline{svn-book}
 
 
 \begin{centering}
-\colorbox{PineGreen}{
+\colorbox{Gray}{
 \begin{minipage}{320px}
   \textbf{svn checkout http://svn.example.com:9834/repositorio}
 \end{minipage}
@@ -230,12 +230,12 @@ Para criar uma cópia de trabalho deve ser digitado o seguinte comando: \citeonl
 Para que os outros membros do projeto tenham acesso ao que foi produzido na cópia de trabalho, o SVN permite que o usuário escreva no repositório as alterações feitas
 e para ter acesso às atualizações feitas por outros membros, é permitido ao usuário ler o repositório. \cite{svn-book}
 
-\begin{multicols}{2} 
+\begin{multicols}{2}
 
 
 \flushright{Para escrever}:{
 
-\colorbox{PineGreen}{
+\colorbox{Gray}{
 \begin{minipage}{210px}
   \textbf{svn commit <nome do arquivo modificado> -m <"mensagem\">}
 \end{minipage}
@@ -244,9 +244,9 @@ e para ter acesso às atualizações feitas por outros membros, é permitido ao 
 
 Para ler:
 
-\colorbox{PineGreen}{
+\colorbox{Gray}{
 \begin{minipage}{100px}
-\flushleft{ 
+\flushleft{
   \textbf{svn update}
 }
 \end{minipage}
@@ -256,11 +256,11 @@ Para ler:
 
 \section{Principais funcionalidades da ferramenta}
 
-Como uma ferramenta de controle de versão, o Subversion oferece as seguintes funcionalidades básicas: 
+Como uma ferramenta de controle de versão, o Subversion oferece as seguintes funcionalidades básicas:
 
 \begin{itemize}
  \item Criar repositórios para manter projetos; (svnadim create) (svn mkdir) (svn checkout)
- \item Adicionar arquivos para o controle de versão; 
+ \item Adicionar arquivos para o controle de versão;
  \item Registrar mudanças em um ou mais arquivos; (status) (add) (commit) (log)
  \item Rastrear alterações em um ou mais arquivos;
 \end{itemize}
@@ -269,108 +269,108 @@ Com o repositório e a cópia de trabalho local criados com o projeto em questã
 alterações nos arquivos e diretórios, basicamente são utilizados os seguintes comandos \cite{svn-book}:
 
 \begin{itemize}
- \item \colorbox{PineGreen}{
+ \item \colorbox{Gray}{
 	\begin{minipage}{.15\linewidth}
-	\flushleft{ 
+	\flushleft{
 	  \textbf{svn status}
 	}
 	\end{minipage}
 	}
-    
+
     \subitem Utilize esse comando para verificar o estado atual dos arquivos e diretórios na cópia de trabalho.
 	     Com este comando é possível visualizar quais arquivos foram modificados localmente.
 	     Utilize este comando dentro do diretório da cópia de trabalho a qualquer momento para verificar seu estado.
 
-	     
-\item \colorbox{PineGreen}{
+
+\item \colorbox{Gray}{
 	\begin{minipage}{.53\linewidth}
 	\flushleft{
 	  \textbf{svn diff CAMINHO/DO/ARQUIVO}
 	}
 	\end{minipage}
 	}
-    
+
     \subitem Este comando permite visualizar as mudanças realizadas em um arquivo na cópia de trabalho.
 	     Pode ser especificado um arquivo específico para vizualizar as modificações, passando o seu caminho como
 	     parâmetro (CAMINHO/ARQUIVO).
 	     Utilize este comando dentro do diretório da cópia de trabalho a qualquer momento para visualizar as modificações
 	     de um arquivo.
-    
-\item \colorbox{PineGreen}{
+
+\item \colorbox{Gray}{
 	\begin{minipage}{.53\linewidth}
-	\flushleft{ 
+	\flushleft{
 	  \textbf{svn add CAMINHO/DO/ARQUIVO}
 	}
 	\end{minipage}
 	}
-    
+
     \subitem Este comando permite adicionar um arquivo ou diretório para o controle de versão, agendando-o para um commit.
 	     O caminho do arquivo que se deseja adicionar é passado como parâmetro.
-	     Utilize este comando quando houver arquivos ou diretórios que não estão sob controle de versão 
+	     Utilize este comando quando houver arquivos ou diretórios que não estão sob controle de versão
 	     (com uma interrogação no resultado do \textbf{svn status}).
-    
-\item \colorbox{PineGreen}{
+
+\item \colorbox{Gray}{
 	\begin{minipage}{.57\linewidth}
-	\flushleft{ 
+	\flushleft{
 	  \textbf{svn revert CAMINHO/DO/ARQUIVO}
 	}
 	\end{minipage}
 	}
-    
+
     \subitem Este comando permite retirar um arquivo ou diretório do controle de versão.
 	     É a operação oposta do \textbf{svn add}, desfazendo as alterações do arquivo.
 	     O caminho do arquivo que se deseja retirar é passado como parâmetro.
 
-\item \colorbox{PineGreen}{
+\item \colorbox{Gray}{
 	\begin{minipage}{.57\linewidth}
-	\flushleft{ 
+	\flushleft{
 	  \textbf{svn commit -m "Mensagem do commit"}
 	}
 	\end{minipage}
 	}
-    
+
     \subitem Este comando permite enviar as alterações na cópia de trabalho local para o repositório.
 	     O commit deve conter uma mensagem que descreva as alterações contidas naquele commit.
 	     Utilize este comando quando já tiver agendado arquivos com modificações e quando desejar
 	     gravar suas alterações no repositório.
 
-\item \colorbox{PineGreen}{
+\item \colorbox{Gray}{
 	\begin{minipage}{.18\linewidth}
-	\flushleft{ 
+	\flushleft{
 	  \textbf{svn update}
 	}
 	\end{minipage}
 	}
-    
+
     \subitem Este comando permite atualizar a cópia de trabalho local com o conteúdo do repositório.
 	     Utilize este comando para atualizar sua cópia de trabalho após um commit, por exemplo.
-      
+
 \item \label{comando_log}
-\colorbox{PineGreen}{
+\colorbox{Gray}{
 	\begin{minipage}{.13\linewidth}
-	\flushleft{ 
+	\flushleft{
 	  \textbf{svn log}
 	}
 	\end{minipage}
 	}
     \subitem Este comando permite vizualizar o histórico de revisões na sua cópia de trabalho local.
-    
+
 \end{itemize}
 
 % Para ver os arquivos modificados o comando é: "svn status"
-% 
+%
 % Para mostrar as diferenças m um arquivo "svn diff"
-% 
+%
 % Para criar uma cópia de trabalho o comando é "svn checkout"
-% 
+%
 % Para ver as revisões criadas o comando é: "svn status --verbose"
-% 
+%
 % Para mostrar o histórico de mudanças o comando é "svn log"
-% 
+%
 % Para desfazer as alterações em um arquivo: "svn revert <arquivo>"
-% 
+%
 % Para criar uma branch, deve ser ser feita uma cópia da pasta trunk para a pasta de branchs com o seguinte comando:
-% 
+%
 % "svn copy <caminho da pasta original> \ <caminho da pasta de destino, essa pasta deve possuir o nome da branch> -m "mensagem\">"
 
 \section{Verificação de algumas funcionalidades}
@@ -381,74 +381,114 @@ alterações nos arquivos e diretórios, basicamente são utilizados os seguinte
     Sim. De acordo com \citeonline{svn-book}, o SVN provê um comando que possibilita a realização de um backup do repositório, caso algo dê errado. O comando é:
 
     \begin{centering}
-    \colorbox{PineGreen}{
+    \colorbox{Gray}{
     \begin{minipage}{420px}
       \textbf{svnadmin hotcopy <caminho do repositorio> <caminho de backup>}
     \end{minipage}
     }
 
-    \end{centering} 
+    \end{centering}
 
   \item \textit{A ferramenta provê algum mecanismo de controle de acesso?}
-   
+
     Sim. No arquivo \textbf{svnserve.conf} são descritos os níveis de acesso para usuários autenticados e não autenticados.\cite{svn-book}
 
     Como fazer configuração de acesso pode ser visto na seção \ref{secao_acesso}.
 
   \item \textit{A ferramenta controla arquivos de diversos formatos, seja código, executáveis, documentação e diagramas?}
-    
+
     Sim. O SVN controla a versão dos arquivos colocados no repositório.
 
   \item \textit{A ferramenta registra versões dos itens de configuração?}
-   
+
     Sim. Cada alteração feita é registrada em um número de revisão do repositório que pode ser visto no arquivo \textbf{format} como já explicado na seção \ref{estrutura}.
 
     É possível visualizar um histórico de alterações com as seguintes informações: Nome do autor da alteração, Data e hora, Mensagem que descreve a alteração. \cite{svn-book}
 
-    Para a visualização desse histórico na cópia de trabalho o comando pode ser visto na seção \ref{comando_log}. A adição dos caracteres \textbf{\textit{--verbose}} ao comando mostra também as pastas que sofreram mudanças. 
+    Para a visualização desse histórico na cópia de trabalho o comando pode ser visto na seção \ref{comando_log}. A adição dos caracteres \textbf{\textit{--verbose}} ao comando mostra também as pastas que sofreram mudanças.
 
     Também é possível visualizar o estado de cada item na sua cópia de trabalho através do seguinte comando: \cite{svn-book}
 
     \begin{centering}
-    \colorbox{PineGreen}{
+    \colorbox{Gray}{
     \begin{minipage}{120px}
       \textbf{svn status --verbose}
     \end{minipage}
     }
 
-    \end{centering} 
+    \end{centering}
 
     Para a visualização de um histórico de revisões com o número da revisão, o autor e a pasta que sofreu a alteração, o comando a ser dado é:
 
      \begin{centering}
-    \colorbox{PineGreen}{
+    \colorbox{Gray}{
     \begin{minipage}{120px}
       \textbf{svn list --verbose}
     \end{minipage}
     }
 
-    \end{centering} 
+    \end{centering}
 
-  \item \textit{É possível visualizar as diferenças entre as versões incluindo a razão para estas 
+  \item \textit{É possível visualizar as diferenças entre as versões incluindo a razão para estas
   diferenças?}
 
       O SVN permite a visualização das diferenças entre as versões, mas não apresenta a razão das diferenças.
-  
+
   \item \textit{É possível identificar dependências entre artefatos, são elas: artefatos que pertencem a um mesmo item de configuração; itens de configuração de um componente; versão de itens de configuração de uma baseline; artefatos que são utilizados para construir um outro artefato  (por exemplo, um código é usado para construir a funcionalidade de um outro código)?}
       
       O SVN não provê nenhum mecanismo para estabelecer a dependência entre os artefatos.
       
   \item \textit{É possível selecionar itens de configuração compatível com a versão válida e consistente do
   produto?}
+
+      Sim, desde que o responsável pelo projeto mantenha o gerenciamento da Baseline do projeto. Ou seja, estabeleça um diretório em /branches onde estejam as últimas versões sob baseline do produto.
+
   \item \textit{É possível fazer snapshots ou congelar o estado de um produto a qualquer momento?}
+
+      Sim. O sistema de organização de diretórios do SVN permite que uma os arquivos que desejam ser distribuídos sejam movidos do diretório /trunk, onde as modificações do dia a dia são submetidas, para  o diretório /branches onde é criada a identificação da versão que está sendo congelada e os desenvolvedores continuam a trabalhar no diretório /trunk.
+
   \item \textit{A ferramenta provê mecanismos que facilitem a análise do impacto de se fazer uma mudança?}
+
+      Não. O SVN permite o registro das mudanças feitas em todos os itens de configuração. Mas não provê mecanismos que indiquem e analisem os impactos das mudanças.
   \item \textit{É possível recuperar o histórico de todas as mudanças realizadas no itens controlados pela
   ferramenta?}
+
+      Sim. Com o SVN é possível obter informações do histórico de um arquivo ou diretório a partir do comando \colorbox{Gray}{svn log}. Com esse comando é possível identificar o autor da mudança, em qual revisão houve a mudança, data e hora e caso tenha sido informada, a mensagem de log do registro.
+
   \item \textit{É possível recuperar o log de todos os detalhes do trabalho realizado?}
+
+      Sim, desde que esse log seja informado. Pois como vimos o comando anterior, o \colorbox{Gray}{svn log}, traz esta informação desde que uma mensagem de log seja associada ao registro.
+
   \item \textit{A ferramenta provê mecanismos para registrar estatísticas?}
+
+      Sim, o SVN em conjunto com os utilitários do Berkeley DB provê estatísticas detalhadas sobre os subsistemas \cite{svn-book}.
+
   \item \textit{A ferramenta provê mecanismos para examinar estado dos itens?}
+
+      Sim. A partir do comando \colorbox{Gray}{svn status -v -u} é possível obter o estado de cada item na cópia de trabalho local comparada aos itens que estão no repositório, evidenciando assim os itens que estão desatualizados. Sendo possível obter uma das quatro opções em cada item.
+        \begin{itemize}
+          \item Estado A
+
+          O arquivo, diretório, ou link simbólico item está agendado para ser adicionado ao repositório.
+
+          \item Estado C
+
+          O arquivo item está em um estado de conflito. Isto é, as modificações recebidas do servidor durante um update se sobrepõem às alterações locais feitas na cópia de trabalho. É necessário resolver conflito antes de submeter as alterações ao repositório.
+
+          \item Estado D
+
+          O arquivo, diretório, ou link simbólico item está agendado para ser excluído do repositório.
+
+          \item Estado M
+
+          O conteúdo do arquivo item foi modificado.
+        \end{itemize}
+
   \item \textit{A ferramenta provê mecanismos para selecionar aspectos para os quais deseja-se gerar relatório
   de acompanhamento de estado de configuração e gerar tal relatório?}
+
+      Não, nativamente a ferramenta não possui a possibilidade de gerar relatórios. Embora é possível utilizar se de outros softwares que geram gráficos, relatórios e tabelas que descrevem o desenvolvimento do projeto. Como exemplo podemos citar o StatSVN \footnotemark. \footnotetext{Disponível em: \url{http://wiki.statsvn.org/}.}
+
   \item \textit{A ferramenta adverte sobre acesso inadequado a qualquer item para evitar mudanças não justificadas
   ou conflitos de mudanças?}
   \item \textit{A ferramenta provê meios para monitorar bugs (quem, como e quando o bug foi gerado)?}
