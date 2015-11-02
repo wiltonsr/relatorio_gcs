@@ -1,10 +1,31 @@
 \chapter[Guia de Uso]{Guia de Uso}
 
+Nesse capítulo é apresentado como utilizar o SVN, através da explicação das primeiras configurações e das principais funcionalidades.
+
 \section{Passo a passo para o primeiro contato com a ferramenta}
+
+Nessa seção são apresentadas as configurações e os passos iniciais para a criação de um repositório utilizando o SVN. Nessa seção serão tratados:
+
+\begin{itemize}
+
+\item Criação de um repositório:
+  
+  \subitem Estrutura inicial do repositório;
+  \subitem Estrutura recomendada do repositório;
+  \subitem Configuração de acesso a um repositório;
+
+\item Disponibilização de um repositório;
+
+\item Acesso a um repositório;
+
+\item Cópias de trabalho;
+    \subitem Operações principais;
+
+\end{itemize}
 
 \subsection{Criando um repositório}
 
-Agora que o SVN já está instalado, para criação de um repositório deve ser dado o seguinte comando:
+Agora que o SVN já está instalado, de acordo com \citeonline{svn-book}, para criação de um repositório deve ser dado o seguinte comando:
 
 \begin{centering}
 
@@ -16,17 +37,32 @@ Agora que o SVN já está instalado, para criação de um repositório deve ser 
 }
 \end{centering}
 
-\subsection{O repositório}
+Para importar uma pasta para o repositório, de acordo com \citeonline{wiki-svn}, deve ser dado o seguinte comando:
 
-De acordo com \cite{svn-book}, quando você cria um repositório no SVN ele contém a seguinte estrutura de pastas:
+
+\begin{centering}
+
+\colorbox{PineGreen}{
+\begin{minipage}{450px}
+  \textbf{svn import /caminho/da/pasta/a/ser/copiada file:///caminho/do/repositorio}
+
+\end{minipage}
+}
+\end{centering}
+
+\subsubsection{O repositório}
+
+De acordo com \citeonline{svn-book}, quando você cria um repositório no SVN ele contém a estrutura de pastas da Figura \ref{fig:estrutura}.
 
 \begin{figure}[!htb]
 \centering
 \includegraphics[scale=1]{figuras/repositorio.png}
 \caption{Estrutura do repositório. Baseado em \cite{svn-book}}
+\label{fig:estrutura}
 \end{figure}
 
-
+\pagebreak
+\label{estrutura}
 \begin{itemize}
 
 \item conf: Pasta que contém arquivos de configuração do repositório.
@@ -43,40 +79,71 @@ De acordo com \cite{svn-book}, quando você cria um repositório no SVN ele cont
 
 \end{itemize}
 
+
+O repositório pode ser configurado com a estrutura de pastas que o usuário desejar, todavia existe um padrão recomendado que pode ser visto na Figura 
+\ref{fig:estrutura_repo}.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[scale=1]{figuras/estrutura_repo.png}
+\caption{Estrutura recomendada do repositório. Baseado em \cite{svn-book}}
+\label{fig:estrutura_repo}
+\end{figure}
+
+\begin{itemize}
+  \item trunk: Pasta principal que contém os arquivos do repositório, é onde fica o projeto testado e sem erros. \cite{wiki-svn}
+
+  \item branches: Pasta utilizada para guardar os arquivos do repositório, "onde você poderá usar para trabalhar em uma nova feature e depois fazer um merge dela com o mainline trunk". \cite{wiki-svn};
+
+  \item tags: Pasta que armazena "snapshots da data do Release de uma dada versão". \cite{wiki-svn}
+\end{itemize}
+
+Para criar essa estrutura deve ser dado o comando a seguir para cada uma das pastas: \cite{wiki-svn}
+
+\begin{centering}
+
+\colorbox{PineGreen}{
+\begin{minipage}{280px}
+  \textbf{svn mkdir file:///caminho/do/repositorio/pasta}
+\end{minipage}
+}
+
+\end{centering}
+
+\subsubsection{Configurando o acesso ao repositório}
+\label{secao_acesso}
+Para configurar o controle de acesso ao repositório devem ser editados os arquivos: \cite{wiki-svn}
+
+\begin{centering}
+\colorbox{PineGreen}{
+\begin{minipage}{250px}
+  \textbf{caminho/do/repositorio/conf/svnserve.conf}
+  \textbf{caminho/do/repositorio/conf/passwd}
+\end{minipage}
+}
+\end{centering}
+
+No arquivo \textit{svnserve.conf} deve ser descomentada a linha \textbf{password-db = passwd} e no arquivo \textit{svnserve.conf}
+deve ser escrito o nome do usuário e a senha da seguinte forma: \textbf{usuário = senha}. \cite{wiki-svn}
+
+\begin{centering}
+Exemplo:
+
+\colorbox{PineGreen}{
+\begin{minipage}{100px}
+
+  \textbf{usuario1 = 12345}
+\end{minipage}
+}
+\end{centering}
+
 \subsection{Disponibilizando um repositório}
 
-\subsubsection{Escolhendo um servidor}
-
-Um repositório pode ser mantido apenas localmente e seu acesso torna-se restrito à máquina a qual ele foi criado. Mas isso não é muito vantajoso, dessa forma um repositório deve ser disponbilizado em um servidor para que as pessoas possam acessá-lo de qualquer lugar. Dessa forma, \cite{svn-book} recomenda os servidores da Tabela \ref{tab:servidores}.
-
-\begin{flushleft}
-\begin{table}[!h]
-
-\caption{Comparação entre os servidores. Fonte: \cite{svn-book}}
-\label{tab:servidores}
-\begin{tabular}{|l|l|l|l|}
-\hline
-\rowcolor[HTML]{01796F} 
-{\color[HTML]{000000} \textbf{Característica}}                            & {\color[HTML]{000000} \textbf{\begin{tabular}[c]{@{}l@{}}Apache + \\ mod\_dav\_svn\end{tabular}}}                                                                           & {\color[HTML]{000000} \textbf{svnserve}}                                                                                                              & {\color[HTML]{000000} \textbf{\begin{tabular}[c]{@{}l@{}}svnserve\\ sobre SSH\end{tabular}}}                                       \\ \hline
-\begin{tabular}[c]{@{}l@{}}Opções de \\ autenticação\end{tabular}         & \begin{tabular}[c]{@{}l@{}}Autenticação básica \\HTTP(S), certificados \\ X.509, LDAP,\\ NTLM, \\ou quaisquer \\ outros mecanismos \\disponíveis ao  \\ Apache httpd\end{tabular} & CRAM-MD5                                                                                                                                              & SSH                                                                                                                                \\ \hline
-\begin{tabular}[c]{@{}l@{}}Opções para \\ contas de usuários\end{tabular} & \begin{tabular}[c]{@{}l@{}}arquivo 'users' \\ privativo\end{tabular}                                                                                                         & \begin{tabular}[c]{@{}l@{}}arquivo 'users' \\ privativo\end{tabular}                                                                                                           & contas no sistema                                                                                                                  \\ \hline
-\begin{tabular}[c]{@{}l@{}}Opções de \\ autorização\end{tabular}          & \begin{tabular}[c]{@{}l@{}}acesso leitura/escrita pode \\ser dado para o \\repositório como um \\ todo, ou especificado por \\ caminho\end{tabular}                              & \begin{tabular}[c]{@{}l@{}}acesso leitura/escrita\\  pode ser dado para\\  o repositório como um\\  todo, ou especificado \\ por caminho\end{tabular} & \begin{tabular}[c]{@{}l@{}}acesso leitura/escrita\\  passível \\ de ser dado\\  apenas ao repositório\\  como um todo\end{tabular} \\ \hline
-Criptografia                                                              & através de SSL opcional                                                                                                                                                     & nenhuma                                                                                                                                               & túnel SSH                                                                                                                          \\ \hline
-Registro de log                                                           & \begin{tabular}[c]{@{}l@{}}logs completos \\do Apache para cada \\ requisição HTTP, \\ com opcional log\\  “alto nível” para operações\\ do cliente em geral\end{tabular}     & sem log                                                                                                                                               & sem log                                                                                                                            \\ \hline
-Interoperabilidade                                                        & \begin{tabular}[c]{@{}l@{}}parcialmente usável por \\ outros clientes WebDAV\end{tabular}                                                                                   & \begin{tabular}[c]{@{}l@{}}se comunica apenas \\ com clientes svn\end{tabular}                                                                        & \begin{tabular}[c]{@{}l@{}}se comunica apenas\\  com clientes svn\end{tabular}                                                     \\ \hline
-\begin{tabular}[c]{@{}l@{}}Visualização \\ pela web\end{tabular}          & \begin{tabular}[c]{@{}l@{}}suporte existente limitado,\\ ou também \\ por meio de ferramentas \\ de terceiros \\ como o ViewVC\end{tabular}                                      & \begin{tabular}[c]{@{}l@{}}apenas por meio de\\  ferramentas \\de terceiros \\ como o ViewVC\end{tabular}                                               & \begin{tabular}[c]{@{}l@{}}apenas por meio de \\ ferramentas \\de terceiros\\  como o ViewVC\end{tabular}                            \\ \hline
-Velocidade                                                                & um pouco mais lento                                                                                                                                                         & \begin{tabular}[c]{@{}l@{}}um pouco mais \\ rápido\end{tabular}                                                                                       & \begin{tabular}[c]{@{}l@{}}um pouco \\ mais rápido\end{tabular}                                                                    \\ \hline
-\begin{tabular}[c]{@{}l@{}}Configuração\\  inicial\end{tabular}           & um tanto complexa                                                                                                                                                           & extremamente simples                                                                                                                                  & \begin{tabular}[c]{@{}l@{}}Moderamente \\ simples\end{tabular}                                                                                                \\ \hline
-\end{tabular}
-\end{table}
-
-\end{flushleft}
-
-\subsubsection{Escolhendo um banco de dados}
+Um repositório pode ser mantido apenas localmente e seu acesso torna-se restrito à máquina a qual ele foi criado. Mas isso não é muito vantajoso, dessa forma um repositório deve ser disponibilizado em um servidor para que as pessoas possam acessá-lo de qualquer lugar. As opções de servidor podem ser vistas no anexo \ref{servidores}. 
 
 \subsection{Acessando um repositório}
 
-  Os repositórios criados para controle de versão com o SVN são acessados através de URLs, seguindo os seguintes padrões \cite{svn-book}:
+  Os repositórios criados para controle de versão com o SVN são acessados através de URLs, seguindo os seguintes padrões: \cite{svn-book}
 
 \begin{centering}
 
@@ -88,7 +155,7 @@ Velocidade                                                                & um p
 \end{minipage}
 }
 
-\textbf{Para repositórios locais:} a URL ganha o prefixo \textit{file:}. Podem ser escritos com o nome do servidor, ou sem.
+\textbf{Para repositórios locais:} a URL ganha o prefixo \textit{file:}. Podem ser escritos com o nome do servidor, ou sem. E de acordo com \citeonline{wiki-svn}, para acessar repositórios locais deve apenas digitar o comando \textbf{svn co url\_definida}.
 \end{centering}
 
 \begin{multicols}{2} 
@@ -139,7 +206,7 @@ svn+ssh://                              & mesmo que svn://, mas através de um t
   
 O SVN trabalha com cópias de trabalho. Uma cópia de trabalho consiste na mesma estrutura do repositório para uso privado. Ou seja, é a cópia local do repositório que pode ser editada pelo usuário. 
 
-Para criar uma cópia de trabalho deve ser digitado o seguinte comando \cite{svn-book}:
+Para criar uma cópia de trabalho deve ser digitado o seguinte comando: \citeonline{svn-book}
 
 
 \begin{centering}
@@ -151,20 +218,7 @@ Para criar uma cópia de trabalho deve ser digitado o seguinte comando \cite{svn
 
 \end{centering}
 
-O repositório pode ser configurado com a estrutura de pastas que o usuário desejar, todavia existe um padrão recomendado que pode ser visto na Figura 
-\ref{estrutura_repo}.
-
-\begin{figure}[!htb]
-\label{estrutura_repo}
-\centering
-\includegraphics[scale=1]{figuras/estrutura_repo.png}
-\caption{Estrutura recomendada do repositório. Baseado em \cite{svn-book}}
-\end{figure}
-
-
-\pagebreak
-
-\subsection{Como funciona a relação entre o repositório e a cópia de trabalho?}
+\subsubsection{Como funciona a relação entre o repositório e a cópia de trabalho?}
 
 \begin{figure}[!htb]
 \centering
@@ -174,7 +228,7 @@ O repositório pode ser configurado com a estrutura de pastas que o usuário des
 
 
 Para que os outros membros do projeto tenham acesso ao que foi produzido na cópia de trabalho, o SVN permite que o usuário escreva no repositório as alterações feitas
-e para ter acesso às atualizações feitas por outros membros, é permitido ao usuário ler o repositório \cite{svn-book}.
+e para ter acesso às atualizações feitas por outros membros, é permitido ao usuário ler o repositório. \cite{svn-book}
 
 \begin{multicols}{2} 
 
@@ -191,7 +245,7 @@ e para ter acesso às atualizações feitas por outros membros, é permitido ao 
 Para ler:
 
 \colorbox{PineGreen}{
-\begin{minipage}{200px}
+\begin{minipage}{100px}
 \flushleft{ 
   \textbf{svn update}
 }
@@ -200,76 +254,214 @@ Para ler:
 
 \end{multicols}
 
-\section{Passo a passo para o uso das principais funcionalidades da ferramenta}
+\section{Principais funcionalidades da ferramenta}
 
-Para ver os arquivos modificados o comando é: "svn status"
-
-Para mostrar as diferenças m um arquivo "svn diff"
-
-Para criar uma cópia de trabalho o comando é "svn checkout"
-
-Para ver as revisões criadas o comando é: "svn status --verbose"
-
-Para mostrar o histórico de mudanças o comando é "svn log"
-
-Para desfazer as alterações em um arquivo: "svn revert <arquivo>"
-
-Para criar uma branch, deve ser ser feita uma cópia da pasta trunk para a pasta de branchs com o seguinte comando:
-
-"svn copy <caminho da pasta original> \ <caminho da pasta de destino, essa pasta deve possuir o nome da branch> -m "mensagem\">"
-
-\section{Verificação das funcionalidades descritas a seguir em forma de pergunta:}
+Como uma ferramenta de controle de versão, o Subversion oferece as seguintes funcionalidades básicas: 
 
 \begin{itemize}
-  \item A ferramenta provê mecanismo de backup dos itens controlados pela ferramenta?
+ \item Criar repositórios para manter projetos; (svnadim create) (svn mkdir) (svn checkout)
+ \item Adicionar arquivos para o controle de versão; 
+ \item Registrar mudanças em um ou mais arquivos; (status) (add) (commit) (log)
+ \item Rastrear alterações em um ou mais arquivos;
+\end{itemize}
 
-    Sim. O SVN provê um comando que possibilita a realização de um backup do repositório, caso algo dê errado. O comando é:
-    "svnadmin hotcopy <caminho do repositorio> <caminho de backup>"
+Com o repositório e a cópia de trabalho local criados com o projeto em questão, para monitorar e controlar as
+alterações nos arquivos e diretórios, basicamente são utilizados os seguintes comandos \cite{svn-book}:
 
-  \item A ferramenta provê algum mecanismo de controle de acesso?
-  
-    Sim. No arquivo "svnserve.conf" são descritos os níveis de acesso para usuários autenticados e não autenticados
+\begin{itemize}
+ \item \colorbox{PineGreen}{
+	\begin{minipage}{.15\linewidth}
+	\flushleft{ 
+	  \textbf{svn status}
+	}
+	\end{minipage}
+	}
+    
+    \subitem Utilize esse comando para verificar o estado atual dos arquivos e diretórios na cópia de trabalho.
+	     Com este comando é possível visualizar quais arquivos foram modificados localmente.
+	     Utilize este comando dentro do diretório da cópia de trabalho a qualquer momento para verificar seu estado.
 
-  \item A ferramenta controla arquivos de diversos formatos, seja código, executáveis, documentação e diagramas?
-  
-    Sim. O SVN controla versão de todos os documentos colocados no repositório.
+	     
+\item \colorbox{PineGreen}{
+	\begin{minipage}{.53\linewidth}
+	\flushleft{
+	  \textbf{svn diff CAMINHO/DO/ARQUIVO}
+	}
+	\end{minipage}
+	}
+    
+    \subitem Este comando permite visualizar as mudanças realizadas em um arquivo na cópia de trabalho.
+	     Pode ser especificado um arquivo específico para vizualizar as modificações, passando o seu caminho como
+	     parâmetro (CAMINHO/ARQUIVO).
+	     Utilize este comando dentro do diretório da cópia de trabalho a qualquer momento para visualizar as modificações
+	     de um arquivo.
+    
+\item \colorbox{PineGreen}{
+	\begin{minipage}{.53\linewidth}
+	\flushleft{ 
+	  \textbf{svn add CAMINHO/DO/ARQUIVO}
+	}
+	\end{minipage}
+	}
+    
+    \subitem Este comando permite adicionar um arquivo ou diretório para o controle de versão, agendando-o para um commit.
+	     O caminho do arquivo que se deseja adicionar é passado como parâmetro.
+	     Utilize este comando quando houver arquivos ou diretórios que não estão sob controle de versão 
+	     (com uma interrogação no resultado do \textbf{svn status}).
+    
+\item \colorbox{PineGreen}{
+	\begin{minipage}{.57\linewidth}
+	\flushleft{ 
+	  \textbf{svn revert CAMINHO/DO/ARQUIVO}
+	}
+	\end{minipage}
+	}
+    
+    \subitem Este comando permite retirar um arquivo ou diretório do controle de versão.
+	     É a operação oposta do \textbf{svn add}, desfazendo as alterações do arquivo.
+	     O caminho do arquivo que se deseja retirar é passado como parâmetro.
 
-  \item A ferramenta registra versões dos itens de configuração?
-  
-    Sim. Cada alteração feita é registrada em um número de revisão. É possível visualizar um histórico de alterações com as seguintes informações:
+\item \colorbox{PineGreen}{
+	\begin{minipage}{.57\linewidth}
+	\flushleft{ 
+	  \textbf{svn commit -m "Mensagem do commit"}
+	}
+	\end{minipage}
+	}
+    
+    \subitem Este comando permite enviar as alterações na cópia de trabalho local para o repositório.
+	     O commit deve conter uma mensagem que descreva as alterações contidas naquele commit.
+	     Utilize este comando quando já tiver agendado arquivos com modificações e quando desejar
+	     gravar suas alterações no repositório.
 
-    \subitem Nome do autor da alteração
-    \subitem Data e hora
-    \subitem Mensagem que descreve a alteração
+\item \colorbox{PineGreen}{
+	\begin{minipage}{.18\linewidth}
+	\flushleft{ 
+	  \textbf{svn update}
+	}
+	\end{minipage}
+	}
+    
+    \subitem Este comando permite atualizar a cópia de trabalho local com o conteúdo do repositório.
+	     Utilize este comando para atualizar sua cópia de trabalho após um commit, por exemplo.
+      
+\item \label{comando_log}
+\colorbox{PineGreen}{
+	\begin{minipage}{.13\linewidth}
+	\flushleft{ 
+	  \textbf{svn log}
+	}
+	\end{minipage}
+	}
+    \subitem Este comando permite vizualizar o histórico de revisões na sua cópia de trabalho local.
+    
+\end{itemize}
 
-  \item É possível visualizar as diferenças entre as versões incluindo a razão para estas 
-  diferenças?
+% Para ver os arquivos modificados o comando é: "svn status"
+% 
+% Para mostrar as diferenças m um arquivo "svn diff"
+% 
+% Para criar uma cópia de trabalho o comando é "svn checkout"
+% 
+% Para ver as revisões criadas o comando é: "svn status --verbose"
+% 
+% Para mostrar o histórico de mudanças o comando é "svn log"
+% 
+% Para desfazer as alterações em um arquivo: "svn revert <arquivo>"
+% 
+% Para criar uma branch, deve ser ser feita uma cópia da pasta trunk para a pasta de branchs com o seguinte comando:
+% 
+% "svn copy <caminho da pasta original> \ <caminho da pasta de destino, essa pasta deve possuir o nome da branch> -m "mensagem\">"
+
+\section{Verificação de algumas funcionalidades}
+
+\begin{itemize}
+  \item \textit{A ferramenta provê mecanismo de backup dos itens controlados pela ferramenta?}
+
+    Sim. De acordo com \citeonline{svn-book}, o SVN provê um comando que possibilita a realização de um backup do repositório, caso algo dê errado. O comando é:
+
+    \begin{centering}
+    \colorbox{PineGreen}{
+    \begin{minipage}{420px}
+      \textbf{svnadmin hotcopy <caminho do repositorio> <caminho de backup>}
+    \end{minipage}
+    }
+
+    \end{centering} 
+
+  \item \textit{A ferramenta provê algum mecanismo de controle de acesso?}
+   
+    Sim. No arquivo \textbf{svnserve.conf} são descritos os níveis de acesso para usuários autenticados e não autenticados.\cite{svn-book}
+
+    Como fazer configuração de acesso pode ser visto na seção \ref{secao_acesso}.
+
+  \item \textit{A ferramenta controla arquivos de diversos formatos, seja código, executáveis, documentação e diagramas?}
+    
+    Sim. O SVN controla a versão dos arquivos colocados no repositório.
+
+  \item \textit{A ferramenta registra versões dos itens de configuração?}
+   
+    Sim. Cada alteração feita é registrada em um número de revisão do repositório que pode ser visto no arquivo \textbf{format} como já explicado na seção \ref{estrutura}.
+
+    É possível visualizar um histórico de alterações com as seguintes informações: Nome do autor da alteração, Data e hora, Mensagem que descreve a alteração. \cite{svn-book}
+
+    Para a visualização desse histórico na cópia de trabalho o comando pode ser visto na seção \ref{comando_log}. A adição dos caracteres \textbf{\textit{--verbose}} ao comando mostra também as pastas que sofreram mudanças. 
+
+    Também é possível visualizar o estado de cada item na sua cópia de trabalho através do seguinte comando: \cite{svn-book}
+
+    \begin{centering}
+    \colorbox{PineGreen}{
+    \begin{minipage}{120px}
+      \textbf{svn status --verbose}
+    \end{minipage}
+    }
+
+    \end{centering} 
+
+    Para a visualização de um histórico de revisões com o número da revisão, o autor e a pasta que sofreu a alteração, o comando a ser dado é:
+
+     \begin{centering}
+    \colorbox{PineGreen}{
+    \begin{minipage}{120px}
+      \textbf{svn list --verbose}
+    \end{minipage}
+    }
+
+    \end{centering} 
+
+  \item \textit{É possível visualizar as diferenças entre as versões incluindo a razão para estas 
+  diferenças?}
+
+      O SVN permite a visualização das diferenças entre as versões, mas não apresenta a razão das diferenças.
   
-  O SVN permite a visualização das diferenças entre as versões, mas não apresenta a razão das diferenças.
+  \item \textit{É possível identificar dependências entre artefatos, são elas: artefatos que pertencem a um mesmo item de configuração; itens de configuração de um componente; versão de itens de configuração de uma baseline; artefatos que são utilizados para construir um outro artefato  (por exemplo, um código é usado para construir a funcionalidade de um outro código)?}
+      
+      O SVN não provê nenhum mecanismo para estabelecer a dependência entre os artefatos.
+      
+  \item \textit{É possível selecionar itens de configuração compatível com a versão válida e consistente do
+  produto?}
+  \item \textit{É possível fazer snapshots ou congelar o estado de um produto a qualquer momento?}
+  \item \textit{A ferramenta provê mecanismos que facilitem a análise do impacto de se fazer uma mudança?}
+  \item \textit{É possível recuperar o histórico de todas as mudanças realizadas no itens controlados pela
+  ferramenta?}
+  \item \textit{É possível recuperar o log de todos os detalhes do trabalho realizado?}
+  \item \textit{A ferramenta provê mecanismos para registrar estatísticas?}
+  \item \textit{A ferramenta provê mecanismos para examinar estado dos itens?}
+  \item \textit{A ferramenta provê mecanismos para selecionar aspectos para os quais deseja-se gerar relatório
+  de acompanhamento de estado de configuração e gerar tal relatório?}
+  \item \textit{A ferramenta adverte sobre acesso inadequado a qualquer item para evitar mudanças não justificadas
+  ou conflitos de mudanças?}
+  \item \textit{A ferramenta provê meios para monitorar bugs (quem, como e quando o bug foi gerado)?}
   
-  \item É possível identificar dependências entre artefatos, são elas: artefatos que pertencem a um mesmo item de configuração; itens de configuração de um componente; versão de itens de configuração de uma baseline; artefatos que são utilizados para construir um outro artefato  (por exemplo, um código é usado para construir a funcionalidade de um outro código)?
+  \item \textit{A ferramenta provê meios que facilitem a propagação de mudanças de maneira controlada
+  através de diferentes versões de itens?}
   
+  Sim. Através de \textit{commits} que enviam as alterações feitas na cópia de trabalho para o repositório. Cada \textit{commit} 
+  informa os itens de configuração que foram alterados, o usuário autenticado que fez as alterações, o nome da transação que é uma breve descrição
+  das alterações que serão submetidas e o número de revisão criado pela submissão \cite{svn-book}.
   
-  \item É possível selecionar itens de configuração compatível com a versão válida e consistente do
-  produto?
-  \item É possível fazer snapshots ou congelar o estado de um produto a qualquer momento?
-  \item A ferramenta provê mecanismos que facilitem a análise do impacto de se fazer uma mudança?
-  \item É possível recuperar o histórico de todas as mudanças realizadas no itens controlados pela
-  ferramenta?
-  \item É possível recuperar o log de todos os detalhes do trabalho realizado?
-  \item A ferramenta provê mecanismos para registrar estatísticas?
-  \item A ferramenta provê mecanismos para examinar estado dos itens?
-  \item A ferramenta provê mecanismos para selecionar aspectos para os quais deseja-se gerar relatório
-  de acompanhamento de estado de configuração e gerar tal relatório?
-  \item A ferramenta adverte sobre acesso inadequado a qualquer item para evitar mudanças não justificadas
-  ou conflitos de mudanças?
-  \item A ferramenta provê meios para monitorar bugs (quem, como e quando o bug foi gerado)?
-  \item A ferramenta provê meios que facilitem a propagação de mudanças de maneira controlada
-  através de diferentes versões de itens?
-  \item A ferramenta provê mecanismos para facilitar a comunicação entre os interessados nos itens de
-  configuração controlados?
-  \item A ferramenta provê mecanismos para resolução de conflitos quando for necessário fazer merge
-  de mudanças?
+  \item \textit{A ferramenta provê mecanismos para resolução de conflitos quando for necessário fazer merge
+  de mudanças?}
   
   Sim. O Subversion e muitos outros sistemas de controle de versão usam um modelo de \textit{copy-modify-merge} (copiar-modificar-fundir) \cite{svn-book}. 
   
@@ -284,4 +476,23 @@ Para criar uma branch, deve ser ser feita uma cópia da pasta trunk para a pasta
   última vez em que ele foi copiado. Com isso, o SVN pode ajudá-lo a fundir todas as alterações do repositório na sua cópia. 
   O SVN não consegue solucionar possíveis conflitos automaticamente, mas ele sinaliza no arquivo as alterações que estão em conflito
    permitindo com que o usuário resolva manualmente.
+   
+     \item \textit{A ferramenta provê mecanismos para facilitar a comunicação entre os interessados nos itens de
+  configuração controlados?}
+  
+  Sim. Existem alguns \textit{scripts}, também chamados de \textit{script} de \textit{hook}, que são programas disparados por um evento ocorrido no repositório\cite{svn-book}.
+  Há muitos \textit{scripts} de \textit{hook} disponíveis pela comunidade de usuários Subversion na internet. Esses \textit{scripts} possuem uma gama de utilitários que facilitam 
+  a comunicação entre os interessados nos itens de configuração, como notificações de alteração dos itens de configuração por e-mail 
+  e controle de acesso aos itens de configuração. Alguns \textit{scripts} de \textit{hook} não vem por padrão instalados no Subversion, fica a critério dos usuários a instalação dos mesmos.
+  
+  O próprio modelo \textit{copy-modify-merge} possui mecanismos que facilitam a comunicação para manter um arquivo consistente.
+  A exemplo disso, como já citado acima, a ferramenta comunica ao usuário quando um arquivo foi alterado e que o mesmo precisa solucionar
+  possíveis conflitos.
+  
+  Em versões que ainda permitiam o uso do modelo \textit{Lock-Modify-Unlock}(travar-modificar-destravar), a ferramenta tinha o mecanismo de comunicação de travas que informava ao usuário que um arquivo deve ser travado antes 
+  de começar sua edição. 
+  
+  O mecaniscmo de comunicação de travas evitava com que duas pessoas editem o mesmo arquivo diretamente no repositório do projeto. Quando
+  um usuário desejava editar algum arquivo diretamente no repositório, esse mecanismo informava que este deveria travar o arquivo para que o mesmo 
+  não fosse editado por outro usuário até que o mesmo fosse destravado.
 \end{itemize}
