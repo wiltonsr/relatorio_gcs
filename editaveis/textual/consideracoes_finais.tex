@@ -1,52 +1,56 @@
 \chapter[Considerações Finais]{Considerações Finais}
 
+Nesta sessão serão trazidas as considerações do grupo a cerca da relação entre as características da ferramenta e a Gerência de Configuração.
+
 \section{Resumo de cobertura das atividades relacionadas às funções da Gerência de Configuração}
-  
+
+Abaixo seguem as relações das atividades de cada uma das etapas da Gerência de Configuração.
+
  \subsection{Identificação da Configuração}
  \begin{itemize}
   \item \textbf{Identificar itens de configuração}
-  
-    A ferramenta permite que o usuário informe quais itens estão sob controle de versão. 
-    
+
+    A ferramenta permite que o usuário informe quais itens estão sob controle de versão.
+
   \item \textbf{Estabelecer esquema de identificação}
-  
+
   \citeonline{svn-book} propõe uma estrutura de pastas recomendada (\textit{/branches}, \textit{/tags} e \textit{/trunk}).
-  
+
   \item \textbf{Definição das \textit{baselines}}
-  
+
   A ferramenta provê a possibilidade de estabelecer \textit{baselines} a partir da cópia dos arquivos do diretório \textit{/trunk},
-  que não serão mais modificados enquanto eles estiverem sob \textit{baseline}, para o diretório \textit{/branches}. Para assim permitir a correção, atualização e evolução dos 
-  arquivos que continuam no diretório \textit{/trunk}. 
+  que não serão mais modificados enquanto eles estiverem sob \textit{baseline}, para o diretório \textit{/branches}. Para assim permitir a correção, atualização e evolução dos
+  arquivos que continuam no diretório \textit{/trunk}.
  \end{itemize}
  \subsection{Controle de Mudanças}
  \begin{itemize}
   \item \textbf{Estabelecer revisões de controle e Controlar revisões}
-  
+
      A ferramenta registra as mudanças por meio dos \textit{commits}.
 
   \item \textbf{Estabelecer procedimento de controle de mudança}
-  
+
   A ferramenta permite que seja estabelecida um procedimento de controle de mudança por meio de uma política \textit{/branches}
   que pode ser definida a critério da equipe.
 
  \end{itemize}
  \subsection{Auditoria}
-  
+
   Se tratando da utilização da ferramenta, não é possível realizar auditorias.
-  
+
  \subsection{Relato de Estado}
  \begin{itemize}
   \item \textbf{Manter histórico das mudanças}
-  
+
   O registro das mudanças são mantidos através dos \textit{commits} que podem ser recuperados através dos \textit{logs}.
-  
+
  \end{itemize}
 \section{Resumo dos principais achados relacionados à instalação e uso da ferramenta}
 
-	O processo de instalação utilizado para o Ubuntu é bastante simples, embora o processo de instalação manual por meio do 
+	O processo de instalação utilizado para o Ubuntu é bastante simples, embora o processo de instalação manual por meio do
 	código fonte seja bem mais custoso, por depender de outras bibliotecas auxiliares que as vezes não estão inclusas.
 	A ferramenta possui uma boa documentação tanto para a instalação, quanto para a descrição das funcionalidades.
-	O uso da ferramenta não é tão fácil no primeiro contato, principalmente para quem já está acostumado com outra ferramenta 
+	O uso da ferramenta não é tão fácil no primeiro contato, principalmente para quem já está acostumado com outra ferramenta
 	de controle de versão como o Git, pois embora algumas funcionalidades sejam as mesmas, a estrutura de funcionamento difere muito.
 
 	Destacamos abaixo os pontos positivos e negativos em relação à ferramenta.
@@ -77,4 +81,4 @@
 \section{O grupo usaria a ferramenta em seus projetos de desenvolvimento de software? Por quê?}
 
  Nenhum integrante da equipe do trabalho apoiaria a utilização da ferramenta em um projeto atual, pois atualmente existem tecnologias que
- oferecem melhores recursos para a gerência de configuração, no caso de ferramentas \textit{open source}, como o Git. Ou Ainda soluções comerciais, como o ClearCase da IBM. 
+ oferecem melhores recursos para a gerência de configuração, no caso de ferramentas \textit{open source}, como o Git. Ou Ainda soluções comerciais, como o ClearCase da IBM.
