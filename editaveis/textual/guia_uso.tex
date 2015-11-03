@@ -93,9 +93,9 @@ O repositório pode ser configurado com a estrutura de pastas que o usuário des
 \begin{itemize}
   \item trunk: Pasta principal que contém os arquivos do repositório, é onde fica o projeto testado e sem erros. \cite{wiki-svn}
 
-  \item branches: Pasta utilizada para guardar os arquivos do repositório, "onde você poderá usar para trabalhar em uma nova feature e depois fazer um merge dela com o mainline trunk". \cite{wiki-svn};
+  \item branches: Pasta utilizada para guardar os arquivos do repositório, "onde você poderá usar para trabalhar em uma nova feature e depois fazer um merge dela com o \textit{mainline trunk}". \cite{wiki-svn};
 
-  \item tags: Pasta que armazena "snapshots da data do Release de uma dada versão". \cite{wiki-svn}
+  \item tags: Pasta que armazena "\textit{snapshots} da data do \textit{Release} de uma dada versão". \cite{wiki-svn}
 \end{itemize}
 
 Para criar essa estrutura deve ser dado o comando a seguir para cada uma das pastas: \cite{wiki-svn}
@@ -256,7 +256,7 @@ Para ler:
 
 \section{Principais funcionalidades da ferramenta}
 
-Como uma ferramenta de controle de versão, o Subversion oferece as seguintes funcionalidades básicas:
+Como uma ferramenta de controle de versão, o \textit{Subversion} oferece as seguintes funcionalidades básicas:
 
 \begin{itemize}
  \item Criar repositórios para manter projetos;
@@ -294,7 +294,7 @@ alterações nos arquivos e diretórios, basicamente são utilizados os seguinte
     \textbf{svn add CAMINHO/DO/ARQUIVO}
   
 
-    \subitem Este comando permite adicionar um arquivo ou diretório para o controle de versão, agendando-o para um commit.
+    \subitem Este comando permite adicionar um arquivo ou diretório para o controle de versão, agendando-o para um \textit{commit}.
        O caminho do arquivo que se deseja adicionar é passado como parâmetro.
        Utilize este comando quando houver arquivos ou diretórios que não estão sob controle de versão
        (com uma interrogação no resultado do \textbf{svn status}).
@@ -312,7 +312,7 @@ alterações nos arquivos e diretórios, basicamente são utilizados os seguinte
   
 
     \subitem Este comando permite enviar as alterações na cópia de trabalho local para o repositório.
-       O commit deve conter uma mensagem que descreva as alterações contidas naquele commit.
+       O \textit{commit} deve conter uma mensagem que descreva as alterações contidas naquele \textit{commit}.
        Utilize este comando quando já tiver agendado arquivos com modificações e quando desejar
        gravar suas alterações no repositório.
 
@@ -321,7 +321,7 @@ alterações nos arquivos e diretórios, basicamente são utilizados os seguinte
   
 
     \subitem Este comando permite atualizar a cópia de trabalho local com o conteúdo do repositório.
-       Utilize este comando para atualizar sua cópia de trabalho após um commit, por exemplo.
+       Utilize este comando para atualizar sua cópia de trabalho após um \textit{commit}, por exemplo.
 
 \item 
   \label{comando_log}
@@ -352,7 +352,7 @@ alterações nos arquivos e diretórios, basicamente são utilizados os seguinte
 \begin{itemize}
   \item \textit{A ferramenta provê mecanismo de backup dos itens controlados pela ferramenta?}
 
-    Sim. De acordo com \citeonline{svn-book}, o SVN provê um comando que possibilita a realização de um backup do repositório, caso algo dê errado. O comando é:
+    Sim. De acordo com \citeonline{svn-book}, o SVN provê um comando que possibilita a realização de um \textit{backup} do repositório, caso algo dê errado. O comando é:
 
     \begin{centering}
     \colorbox{Gray}{
@@ -414,7 +414,7 @@ alterações nos arquivos e diretórios, basicamente são utilizados os seguinte
   \item \textit{É possível selecionar itens de configuração compatível com a versão válida e consistente do
   produto?}
 
-      Sim, desde que o responsável pelo projeto mantenha o gerenciamento da Baseline do projeto. Ou seja, estabeleça um diretório em /branches onde estejam as últimas versões sob baseline do produto.
+      Sim, desde que o responsável pelo projeto mantenha o gerenciamento da \textit{Baseline} do projeto. Ou seja, estabeleça um diretório em /branches onde estejam as últimas versões sob baseline do produto.
 
   \item \textit{É possível fazer snapshots ou congelar o estado de um produto a qualquer momento?}
 
@@ -426,15 +426,15 @@ alterações nos arquivos e diretórios, basicamente são utilizados os seguinte
   \item \textit{É possível recuperar o histórico de todas as mudanças realizadas no itens controlados pela
   ferramenta?}
 
-      Sim. Com o SVN é possível obter informações do histórico de um arquivo ou diretório a partir do comando \colorbox{Gray}{svn log}. Com esse comando é possível identificar o autor da mudança, em qual revisão houve a mudança, data e hora e caso tenha sido informada, a mensagem de log do registro.
+      Sim. Com o SVN é possível obter informações do histórico de um arquivo ou diretório a partir do comando \colorbox{Gray}{svn log}. Com esse comando é possível identificar o autor da mudança, em qual revisão houve a mudança, data e hora e caso tenha sido informada, a mensagem de \textit{log} do registro.
 
   \item \textit{É possível recuperar o log de todos os detalhes do trabalho realizado?}
 
-      Sim, desde que esse log seja informado. Pois como vimos o comando anterior, o \colorbox{Gray}{svn log}, traz esta informação desde que uma mensagem de log seja associada ao registro.
+      Sim, desde que esse \textit{log} seja informado. Pois como vimos o comando anterior, o \colorbox{Gray}{svn log}, traz esta informação desde que uma mensagem de \textit{log} seja associada ao registro.
 
   \item \textit{A ferramenta provê mecanismos para registrar estatísticas?}
 
-      Sim, o SVN em conjunto com os utilitários do Berkeley DB provê estatísticas detalhadas sobre os subsistemas \cite{svn-book}.
+      Sim, o SVN em conjunto com os utilitários do \textit{Berkeley DB} provê estatísticas detalhadas sobre os subsistemas \cite{svn-book}.
 
   \item \textit{A ferramenta provê mecanismos para examinar estado dos itens?}
 
@@ -442,7 +442,7 @@ alterações nos arquivos e diretórios, basicamente são utilizados os seguinte
         \begin{itemize}
           \item Estado A
 
-          O arquivo, diretório, ou link simbólico item está agendado para ser adicionado ao repositório.
+          O arquivo, diretório, ou \textit{link} simbólico item está agendado para ser adicionado ao repositório.
 
           \item Estado C
 
@@ -450,7 +450,7 @@ alterações nos arquivos e diretórios, basicamente são utilizados os seguinte
 
           \item Estado D
 
-          O arquivo, diretório, ou link simbólico item está agendado para ser excluído do repositório.
+          O arquivo, diretório, ou \textit{link} simbólico item está agendado para ser excluído do repositório.
 
           \item Estado M
 
@@ -480,7 +480,7 @@ alterações nos arquivos e diretórios, basicamente são utilizados os seguinte
   \item \textit{A ferramenta provê mecanismos para resolução de conflitos quando for necessário fazer merge
   de mudanças?}
   
-  Sim. O Subversion e muitos outros sistemas de controle de versão usam um modelo de \textit{copy-modify-merge} (copiar-modificar-fundir) \cite{svn-book}. 
+  Sim. O \textit{Subversion} e muitos outros sistemas de controle de versão usam um modelo de \textit{copy-modify-merge} (copiar-modificar-fundir) \cite{svn-book}. 
   
   O modelo \textit{copy-modify-merge} adverte aos usuários quando sua cópia local está em situação de conflito.
   Esse modelo funciona da seguinte maneira: 
@@ -498,7 +498,7 @@ alterações nos arquivos e diretórios, basicamente são utilizados os seguinte
   configuração controlados?}
   
   Sim. Existem alguns \textit{scripts}, também chamados de \textit{script} de \textit{hook}, que são programas disparados por um evento ocorrido no repositório\cite{svn-book}.
-  Há muitos \textit{scripts} de \textit{hook} disponíveis pela comunidade de usuários Subversion na internet. Esses \textit{scripts} possuem uma gama de utilitários que facilitam 
+  Há muitos \textit{scripts} de \textit{hook} disponíveis pela comunidade de usuários \textit{Subversion} na internet. Esses \textit{scripts} possuem uma gama de utilitários que facilitam 
   a comunicação entre os interessados nos itens de configuração, como notificações de alteração dos itens de configuração por e-mail 
   e controle de acesso aos itens de configuração. Alguns \textit{scripts} de \textit{hook} não vem por padrão instalados no Subversion, fica a critério dos usuários a instalação dos mesmos.
   

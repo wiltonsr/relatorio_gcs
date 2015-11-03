@@ -1,60 +1,80 @@
 \chapter[Considerações Finais]{Considerações Finais}
 
 \section{Resumo de cobertura das atividades relacionadas às funções da Gerência de Configuração}
+  
  \subsection{Identificação da Configuração}
  \begin{itemize}
- \item \textbf{Requisitos de identificação de dados}
- \item \textbf{Identificar itens de configuação}
- \item \textbf{Estabelecer esquema de identificação}
- \item \textbf{Identificar requisitos de aceitação}
- \item \textbf{Definição das baselines}
+  \item \textbf{Identificar itens de configuração}
+  
+    A ferramenta permite que o usuário informe quais itens estão sob controle de versão. 
+    
+  \item \textbf{Estabelecer esquema de identificação}
+  
+  \citeonline{svn-book} propõe uma estrutura de pastas recomendada (\textit{/branches}, \textit{/tags} e \textit{/trunk}).
+  
+  \item \textbf{Definição das \textit{baselines}}
+  
+  A ferramenta provê a possibilidade de estabelecer \textit{baselines} a partir da cópia dos arquivos do diretório \textit{/trunk},
+  que não serão mais modificados enquanto eles estiverem sob \textit{baseline}, para o diretório \textit{/branches}. Para assim permitir a correção, atualização e evolução dos 
+  arquivos que continuam no diretório \textit{/trunk}. 
  \end{itemize}
  \subsection{Controle de Mudanças}
  \begin{itemize}
- \item \textbf{Estabelecer revisões de controle}
- \item \textbf{EStabelecer procedimento de controle de mudança}
- \item \textbf{Controlar revisões}
+  \item \textbf{Estabelecer revisões de controle e Controlar revisões}
+  
+     A ferramenta registra as mudanças por meio dos \textit{commits}.
+
+  \item \textbf{Estabelecer procedimento de controle de mudança}
+  
+  A ferramenta permite que seja estabelecida um procedimento de controle de mudança por meio de uma política \textit{/branches}
+  que pode ser definida a critério da equipe.
+
  \end{itemize}
  \subsection{Auditoria}
- \begin{itemize}
- \item \textbf{Auditoria física}
- \item \textbf{Auditoria funcional}
- \item \textbf{Revisão formal}
- \end{itemize}
+  
+  Se tratando da utilização da ferramenta, não é possível realizar auditorias.
+  
  \subsection{Relato de Estado}
  \begin{itemize}
- \item \textbf{Manter registro da definição dos produtos}
- \item \textbf{Manter registro da verificação da configuração}
- \item \textbf{Manter registro do estado das mudanças}
- \item \textbf{Manter histórico das aprovações das mudanças}
+  \item \textbf{Manter histórico das mudanças}
+  
+  O registro das mudanças são mantidos através dos \textit{commits} que podem ser recuperados através dos \textit{logs}.
+  
  \end{itemize}
 \section{Resumo dos principais achados relacionados à instalação e uso da ferramenta}
-\section{Pontos positivos e negativos}
 
-\subsection{Pontos positivos}
+	O processo de instalação utilizado para o Ubuntu é bastante simples, embora o processo de instalação manual por meio do 
+	código fonte seja bem mais custoso, por depender de outras bibliotecas auxiliares que as vezes não estão inclusas.
+	A ferramenta possui uma boa documentação tanto para a instalação, quanto para a descrição das funcionalidades.
+	O uso da ferramenta não é tão fácil no primeiro contato, principalmente para quem já está acostumado com outra ferramenta 
+	de controle de versão como o Git, pois embora algumas funcionalidades sejam as mesmas, a estrutura de funcionamento difere muito.
 
-		Os pontos positivos identificados pelo grupo foram:
+	Destacamos abaixo os pontos positivos e negativos em relação à ferramenta.
 
-		\begin{itemize}
+	\subsection{Pontos positivos}
 
-			\item Possui controle de acesso ao repositório;
-			\item Gera um log com data e nome do autor que fez aquela alteração;
-			\item Trabalha com a criação de \textit{branches}; 
+			Os pontos positivos identificados pelo grupo foram:
 
-		\end{itemize}
-
-
+			\begin{itemize}
+				\item Possui controle de acesso ao repositório;
+				\item Gera um log com data e nome do autor que fez aquela alteração;
+				\item Trabalha com a criação de \textit{branches};
+				\item É \textit{open source};
+				\item Possui uma boa documentação;
+			\end{itemize}
 
 
 	\subsection{Pontos negativos}
 
-		Os pontos negativos identificados pelo grupo foram:
+			Os pontos negativos identificados pelo grupo foram:
 
-		\begin{itemize}
-			\item Necessidade do uso de um servidor próprio;
-			\item Muitos passos para configurar;
-			\item Não há possibilidade de realizar \textit{commits} locais;
-
-		\end{itemize}
+			\begin{itemize}
+				\item Necessidade do uso de um servidor próprio;
+				\item Muitos passos para configurar;
+				\item Não há possibilidade de realizar \textit{commits} locais;
+			\end{itemize}
 
 \section{O grupo usaria a ferramenta em seus projetos de desenvolvimento de software? Por quê?}
+
+ Nenhum integrante da equipe do trabalho apoiaria a utilização da ferramenta em um projeto atual, pois atualmente existem tecnologias que
+ oferecem melhores recursos para a gerência de configuração, no caso de ferramentas \textit{open source}, como o Git. Ou Ainda soluções comerciais, como o ClearCase da IBM. 
