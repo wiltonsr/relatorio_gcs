@@ -271,90 +271,62 @@ Com o repositório e a cópia de trabalho local criados com o projeto em questã
 alterações nos arquivos e diretórios, basicamente são utilizados os seguintes comandos \cite{svn-book}:
 
 \begin{itemize}
- \item \colorbox{Gray}{
-	\begin{minipage}{.15\linewidth}
-	\flushleft{
-	  \textbf{svn status}
-	}
-	\end{minipage}
-	}
+ \item 
+    \textbf{svn status}
+  
 
     \subitem Utilize esse comando para verificar o estado atual dos arquivos e diretórios na cópia de trabalho.
-	     Com este comando é possível visualizar quais arquivos foram modificados localmente.
-	     Utilize este comando dentro do diretório da cópia de trabalho a qualquer momento para verificar seu estado.
+       Com este comando é possível visualizar quais arquivos foram modificados localmente.
+       Utilize este comando dentro do diretório da cópia de trabalho a qualquer momento para verificar seu estado.
 
 
-\item \colorbox{Gray}{
-	\begin{minipage}{.53\linewidth}
-	\flushleft{
-	  \textbf{svn diff CAMINHO/DO/ARQUIVO}
-	}
-	\end{minipage}
-	}
+\item 
+    \textbf{svn diff CAMINHO/DO/ARQUIVO}
+  
 
     \subitem Este comando permite visualizar as mudanças realizadas em um arquivo na cópia de trabalho.
-	     Pode ser especificado um arquivo específico para vizualizar as modificações, passando o seu caminho como
-	     parâmetro (CAMINHO/ARQUIVO).
-	     Utilize este comando dentro do diretório da cópia de trabalho a qualquer momento para visualizar as modificações
-	     de um arquivo.
+       Pode ser especificado um arquivo específico para vizualizar as modificações, passando o seu caminho como
+       parâmetro (CAMINHO/ARQUIVO).
+       Utilize este comando dentro do diretório da cópia de trabalho a qualquer momento para visualizar as modificações
+       de um arquivo.
 
-\item \colorbox{Gray}{
-	\begin{minipage}{.53\linewidth}
-	\flushleft{
-	  \textbf{svn add CAMINHO/DO/ARQUIVO}
-	}
-	\end{minipage}
-	}
+\item 
+    \textbf{svn add CAMINHO/DO/ARQUIVO}
+  
 
     \subitem Este comando permite adicionar um arquivo ou diretório para o controle de versão, agendando-o para um commit.
-	     O caminho do arquivo que se deseja adicionar é passado como parâmetro.
-	     Utilize este comando quando houver arquivos ou diretórios que não estão sob controle de versão
-	     (com uma interrogação no resultado do \textbf{svn status}).
+       O caminho do arquivo que se deseja adicionar é passado como parâmetro.
+       Utilize este comando quando houver arquivos ou diretórios que não estão sob controle de versão
+       (com uma interrogação no resultado do \textbf{svn status}).
 
-\item \colorbox{Gray}{
-	\begin{minipage}{.57\linewidth}
-	\flushleft{
-	  \textbf{svn revert CAMINHO/DO/ARQUIVO}
-	}
-	\end{minipage}
-	}
+\item 
+    \textbf{svn revert CAMINHO/DO/ARQUIVO}
+  
 
     \subitem Este comando permite retirar um arquivo ou diretório do controle de versão.
-	     É a operação oposta do \textbf{svn add}, desfazendo as alterações do arquivo.
-	     O caminho do arquivo que se deseja retirar é passado como parâmetro.
+       É a operação oposta do \textbf{svn add}, desfazendo as alterações do arquivo.
+       O caminho do arquivo que se deseja retirar é passado como parâmetro.
 
-\item \colorbox{Gray}{
-	\begin{minipage}{.57\linewidth}
-	\flushleft{
-	  \textbf{svn commit -m "Mensagem do commit"}
-	}
-	\end{minipage}
-	}
+\item 
+    \textbf{svn commit -m "Mensagem do commit"}
+  
 
     \subitem Este comando permite enviar as alterações na cópia de trabalho local para o repositório.
-	     O commit deve conter uma mensagem que descreva as alterações contidas naquele commit.
-	     Utilize este comando quando já tiver agendado arquivos com modificações e quando desejar
-	     gravar suas alterações no repositório.
+       O commit deve conter uma mensagem que descreva as alterações contidas naquele commit.
+       Utilize este comando quando já tiver agendado arquivos com modificações e quando desejar
+       gravar suas alterações no repositório.
 
-\item \colorbox{Gray}{
-	\begin{minipage}{.18\linewidth}
-	\flushleft{
-	  \textbf{svn update}
-	}
-	\end{minipage}
-	}
+\item 
+    \textbf{svn update}
+  
 
     \subitem Este comando permite atualizar a cópia de trabalho local com o conteúdo do repositório.
-	     Utilize este comando para atualizar sua cópia de trabalho após um commit, por exemplo.
+       Utilize este comando para atualizar sua cópia de trabalho após um commit, por exemplo.
 
-\item \label{comando_log}
-\colorbox{Gray}{
-	\begin{minipage}{.13\linewidth}
-	\flushleft{
-	  \textbf{svn log}
-	}
-	\end{minipage}
-	}
+\item 
+  \label{comando_log}
+    \textbf{svn log}
+  
     \subitem Este comando permite vizualizar o histórico de revisões na sua cópia de trabalho local.
 
 \end{itemize}
@@ -396,7 +368,6 @@ alterações nos arquivos e diretórios, basicamente são utilizados os seguinte
     Sim. No arquivo \textbf{svnserve.conf} são descritos os níveis de acesso para usuários autenticados e não autenticados.\cite{svn-book}
 
     Como fazer configuração de acesso pode ser visto na seção \ref{secao_acesso}.
-
   \item \textit{A ferramenta controla arquivos de diversos formatos, seja código, executáveis, documentação e diagramas?}
 
     Sim. O SVN controla a versão dos arquivos colocados no repositório.
@@ -497,8 +468,7 @@ alterações nos arquivos e diretórios, basicamente são utilizados os seguinte
   Não foram encontradas informações à respeito dessa funcionalidade.
   
   \item \textit{A ferramenta provê meios para monitorar bugs (quem, como e quando o bug foi gerado)?}
-  
-  Não foram encontradas informações à respeito dessa funcionalide.
+  Não foram encontradas informações à respeito dessa funcionalidade.
   
   \item \textit{A ferramenta provê meios que facilitem a propagação de mudanças de maneira controlada
   através de diferentes versões de itens?}
@@ -539,7 +509,7 @@ alterações nos arquivos e diretórios, basicamente são utilizados os seguinte
   Em versões que ainda permitiam o uso do modelo \textit{Lock-Modify-Unlock}(travar-modificar-destravar), a ferramenta tinha o mecanismo de comunicação de travas que informava ao usuário que um arquivo deve ser travado antes 
   de começar sua edição. 
   
-  O mecaniscmo de comunicação de travas evitava com que duas pessoas editem o mesmo arquivo diretamente no repositório do projeto. Quando
+  O mecanismo de comunicação de travas evitava com que duas pessoas editem o mesmo arquivo diretamente no repositório do projeto. Quando
   um usuário desejava editar algum arquivo diretamente no repositório, esse mecanismo informava que este deveria travar o arquivo para que o mesmo 
   não fosse editado por outro usuário até que o mesmo fosse destravado.
 \end{itemize}
