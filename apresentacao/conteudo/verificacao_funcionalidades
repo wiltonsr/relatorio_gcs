@@ -1,5 +1,6 @@
-\begin{frame}{Verificação das Funcionalidades}
+\section{Verificação das Funcionalidades}
 
+\begin{frame}{Verificação das Funcionalidades}
 \begin{block}{O que o SVN possui?}
   \begin{itemize}
     \item<1-> Mecanismo de backup
@@ -18,6 +19,7 @@
 \end{frame}
 %%%%%%%%%%%%%%%%
 
+\begin{frame}{Verificação das Funcionalidades}
 \begin{block}{O que o SVN não possui?}
   \begin{itemize}
     \item<1-> Mecanismo para identificar a dependência dos artefatos
