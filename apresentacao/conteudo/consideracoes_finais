@@ -3,7 +3,6 @@
 \begin{frame}{Considerações Finais}{}
 \begin{block}{Pontos Positivos}
   \begin{itemize}
-    \item<1-> A preocupação central na construção de um produto é que ele seja usável.
     \item<1-> Possui controle de acesso ao repositório
     \item<1-> Gera um log com data e nome do autor que fez aquela alteração
     \item<1-> Trabalha com a criação de branches
@@ -18,7 +17,6 @@
 \begin{frame}{Considerações Finais}{}
 \begin{block}{Pontos Negativos}
   \begin{itemize}
-    \item<1-> Fácil de aprender
     \item<1-> Necessidade do uso de um servidor próprio
     \item<1-> Muitos passos para configurar
     \item<1-> Não há possibilidade de realizar commits locais

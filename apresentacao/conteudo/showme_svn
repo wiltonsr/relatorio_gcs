@@ -1,0 +1,11 @@
+\section{Show me the SVN}
+
+\begin{frame}{Na prática...}
+\begin{block}{Show me the SVN}
+  \begin{figure}[h!]
+    \centering
+      \includegraphics[width=1\textwidth]{figuras/repo}
+  \end{figure}
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%
