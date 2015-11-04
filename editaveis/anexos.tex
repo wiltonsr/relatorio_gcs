@@ -2,12 +2,34 @@
 
 \partanexos
 
-% \chapter{Primeiro Anexo}
+\chapter{Escolhendo um servidor}
+\label{servidores}
+Para a disponibilização do repositório, \citeonline{svn-book} recomenda os servidores da Tabela \ref{tab:servidores}.
 
-% Texto do primeiro anexo.
+\begin{flushleft}
+\begin{table}[!h]
 
-% \chapter{Segundo Anexo}
+\caption{Comparação entre os servidores. Fonte: \cite{svn-book}}
+\label{tab:servidores}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\rowcolor[HTML]{01796F} 
+{\color[HTML]{000000} \textbf{Característica}}                            & {\color[HTML]{000000} \textbf{\begin{tabular}[c]{@{}l@{}}Apache + \\ mod\_dav\_svn\end{tabular}}}                                                                           & {\color[HTML]{000000} \textbf{svnserve}}                                                                                                              & {\color[HTML]{000000} \textbf{\begin{tabular}[c]{@{}l@{}}svnserve\\ sobre SSH\end{tabular}}}                                       \\ \hline
+\begin{tabular}[c]{@{}l@{}}Opções de \\ autenticação\end{tabular}         & \begin{tabular}[c]{@{}l@{}}Autenticação básica \\HTTP(S), certificados \\ X.509, LDAP,\\ NTLM, \\ou quaisquer \\ outros mecanismos \\disponíveis ao  \\ Apache httpd\end{tabular} & CRAM-MD5                                                                                                                                              & SSH                                                                                                                                \\ \hline
+\begin{tabular}[c]{@{}l@{}}Opções para \\ contas de usuários\end{tabular} & \begin{tabular}[c]{@{}l@{}}arquivo 'users' \\ privativo\end{tabular}                                                                                                         & \begin{tabular}[c]{@{}l@{}}arquivo 'users' \\ privativo\end{tabular}                                                                                                           & contas no sistema                                                                                                                  \\ \hline
+\begin{tabular}[c]{@{}l@{}}Opções de \\ autorização\end{tabular}          & \begin{tabular}[c]{@{}l@{}}acesso leitura/escrita pode \\ser dado para o \\repositório como um \\ todo, ou especificado por \\ caminho\end{tabular}                              & \begin{tabular}[c]{@{}l@{}}acesso leitura/escrita\\  pode ser dado para\\  o repositório como um\\  todo, ou especificado \\ por caminho\end{tabular} & \begin{tabular}[c]{@{}l@{}}acesso leitura/escrita\\  passível \\ de ser dado\\  apenas ao repositório\\  como um todo\end{tabular} \\ \hline
+Criptografia                                                              & através de SSL opcional                                                                                                                                                     & nenhuma                                                                                                                                               & túnel SSH                                                                                                                          \\ \hline
+Registro de log                                                           & \begin{tabular}[c]{@{}l@{}}logs completos \\do Apache para cada \\ requisição HTTP, \\ com opcional log\\  “alto nível” para operações\\ do cliente em geral\end{tabular}     & sem log                                                                                                                                               & sem log                                                                                                                            \\ \hline
+Interoperabilidade                                                        & \begin{tabular}[c]{@{}l@{}}parcialmente usável por \\ outros clientes WebDAV\end{tabular}                                                                                   & \begin{tabular}[c]{@{}l@{}}se comunica apenas \\ com clientes svn\end{tabular}                                                                        & \begin{tabular}[c]{@{}l@{}}se comunica apenas\\  com clientes svn\end{tabular}                                                     \\ \hline
+\begin{tabular}[c]{@{}l@{}}Visualização \\ pela web\end{tabular}          & \begin{tabular}[c]{@{}l@{}}suporte existente limitado,\\ ou também \\ por meio de ferramentas \\ de terceiros \\ como o ViewVC\end{tabular}                                      & \begin{tabular}[c]{@{}l@{}}apenas por meio de\\  ferramentas \\de terceiros \\ como o ViewVC\end{tabular}                                               & \begin{tabular}[c]{@{}l@{}}apenas por meio de \\ ferramentas \\de terceiros\\  como o ViewVC\end{tabular}                            \\ \hline
+Velocidade                                                                & um pouco mais lento                                                                                                                                                         & \begin{tabular}[c]{@{}l@{}}um pouco mais \\ rápido\end{tabular}                                                                                       & \begin{tabular}[c]{@{}l@{}}um pouco \\ mais rápido\end{tabular}                                                                    \\ \hline
+\begin{tabular}[c]{@{}l@{}}Configuração\\  inicial\end{tabular}           & um tanto complexa                                                                                                                                                           & extremamente simples                                                                                                                                  & \begin{tabular}[c]{@{}l@{}}Moderamente \\ simples\end{tabular}                                                                                                \\ \hline
+\end{tabular}
+\end{table}
 
-% Texto do segundo anexo.
+\end{flushleft}
+
+
+
 
 \end{anexosenv}
