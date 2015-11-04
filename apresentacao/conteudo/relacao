@@ -1,0 +1,11 @@
+\section{Funções da Gerência de Configuração}
+
+\begin{frame}{Relação do SVN com as funções da GCS}
+\begin{block}{}
+  \begin{figure}[h!]
+    \centering
+      \includegraphics[width=0.9\textwidth]{figuras/relacao}
+  \end{figure}
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%

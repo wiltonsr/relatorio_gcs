@@ -27,14 +27,14 @@
 \end{frame}
 %%%%%%%%%%%%%%%%
 
-\begin{frame}{Considerações Finais}
-\begin{block}{Dificuldades encontradas}
-  \begin{itemize}
-    \item<1-> Confuso
-    \item<2-> Irritante
-    \item<3-> Ineficiente
-    \item<4-> Difícil de Utilizar
-  \end{itemize}
-\end{block}
-\end{frame}
-%%%%%%%%%%%%%%%%
+%\begin{frame}{Considerações Finais}
+%\begin{block}{Dificuldades encontradas}
+%  \begin{itemize}
+%    \item<1-> Confuso
+%    \item<2-> Irritante
+%    \item<3-> Ineficiente
+%    \item<4-> Difícil de Utilizar
+%  \end{itemize}
+%\end{block}
+%\end{frame}
+%%%%%%%%%%%%%%%%%
