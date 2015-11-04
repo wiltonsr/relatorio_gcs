@@ -72,5 +72,3 @@
   O SVN é compatível em todos os Sistemas Operacionais modernos de Unix, Win32, BeOS, OS/2 e MacOS X. O \textit{Subversion} é escrito em ANSI C e usa APR, a biblioteca \textit{Apache Portable Runtime}, como uma camada de portabilidade. O cliente \textit{Subversion} irá funcionar em qualquer lugar que o APR possa ser executado, que é a maioria dos lugares \cite{apache-faq}. O servidor \textit{Subversion} (ou seja, o lado repositório) é o mesmo, exceto que ele não vai hospedar um repositório Berkeley DB em plataformas Win9x (Win95/Win98/WinME), pois Berkeley DB tem problemas de segmento de memória compartilhada no Win9x. Repositórios FSFS (introduzido na versão 1.1) não tem essa restrição; no entanto, devido a uma limitação no suporte de bloqueio de arquivo do Win9x, eles também não funcionam no Win9x.
 
   Para reiterar, o cliente \textit{Subversion} pode ser executado em qualquer plataforma onde APR é executado. O servidor \textit{Subversion} também pode ser executado em qualquer plataforma onde APR rode, mas não pode hospedar um repositório em Win95/Win98/WinMe \cite{apache-faq}.
-
-\section{Outras informações gerais sobre a ferramenta}
