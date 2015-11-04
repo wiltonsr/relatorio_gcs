@@ -1,0 +1,29 @@
+\begin{frame}{Verificação das Funcionalidades}
+
+\begin{block}{O que o SVN possui?}
+  \begin{itemize}
+    \item<1-> Mecanismo de backup
+    \item<1-> Mecanismo de controle de acesso
+    \item<1-> Controle de arquivo de diferentes formatos
+    \item<1-> Registro de versões dos itens
+    \item<1-> Visualização das diferenças entre as versões
+    \item<1-> Snapshots dos itens
+    \item<1-> Histórico de todas as alterações realizadas
+    \item<1-> Estatísticas se associado com Berkeley DB
+    \item<1-> Mecanismo de examinar estado dos itens
+    \item<1-> Resolução de conflitos
+    \item<1-> Mecanismo que facilita a comunicação entre os interessados nos itens
+  \end{itemize}
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%
+
+\begin{block}{O que o SVN não possui?}
+  \begin{itemize}
+    \item<1-> Mecanismo para identificar a dependência dos artefatos
+    \item<1-> Mecanismo que facilite a análise do impacto da mudança
+    \item<1-> Geração de relatório
+  \end{itemize}
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%
